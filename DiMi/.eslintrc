@@ -1,0 +1,9 @@
+{
+    "extends": "rallycoding",
+    "rules": {
+        "import/no-extraneous-dependencies": [
+            2,
+            {}
+        ]
+    }
+}
