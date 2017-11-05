@@ -10,24 +10,16 @@ import Mall from "./Components/Mall/Mall";
 
 export const HomeStack = StackNavigator({
   ManHinh_Home: {
-    screen: Home,
-    navigationOptions: {
-      title: "Home"
-    }
+    screen: Home
   },
   ManHinh_Mall: {
-    screen: Mall,
-    navigationOptions: {
-      title: "Mall"
-    }
+    screen: Mall
   },
   ManHinh_User: {
-    screen: User,
-    navigationOptions: {
-      title: "Tôi"
-    }
+    screen: User
   }
-});
+},
+);
 
 
 export const Tabs = TabNavigator(
@@ -57,17 +49,16 @@ export const Tabs = TabNavigator(
     }
   },
   {
-			  tabBarPosition:'bottom',		// đưa tabBar xuống dưới, mặc định nó ở trên (android), ở dưới (ios)
-			  swipeEnables: true,			// có thể kéo giữa các màn hình không cần bấm nút
-			  tabBarOptions:{
-				style:{
-				  backgroundColor:"#F9F9F9"		//background tabBar
-				},
-				activeTintColor:"#F23F1F",		//màu chữ khi được click
-        inactiveTintColor:'#818085',	//màu chữ khi không được click
-        showIcon: true,
-        upperCaseLabel: false
-			  }
-
-			}
+		tabBarPosition:'bottom',		// đưa tabBar xuống dưới, mặc định nó ở trên (android), ở dưới (ios)
+		swipeEnables: true,			// có thể kéo giữa các màn hình không cần bấm nút
+		tabBarOptions:{
+      style:{
+        backgroundColor:"#F9F9F9"		//background tabBar
+      },
+      activeTintColor:"#F23F1F",		//màu chữ khi được click
+      inactiveTintColor:'#818085',	//màu chữ khi không được click
+      showIcon: true,
+      upperCaseLabel: false
+    },
+	}
 );

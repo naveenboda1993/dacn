@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { View, Text } from "react-native";
 
-export default class Home extends Component {
+import SearchHeader from "../Search/SearchHeader";
+
+export default class Mall extends Component {
   render() {
     return (
       <View>
-        <Text>Mall</Text>
+            <SearchHeader />
       </View>
-    );
+    )
+
   }
 }
