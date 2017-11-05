@@ -34,13 +34,13 @@ export default class SearchHeader extends Component {
             }}
           >
             <EvilIcons name="search" size={20} />
-            <Text style={{ color: "#F23F1F", paddingLeft: 5 }}>Midi</Text>
+            <Text style={{ color: "#F23F1F", paddingLeft: 5 }}>MiDiShop</Text>
           </View>
         </TouchableOpacity>
         <Ionicons
           name="ios-cart-outline"
           size={20}
-          style={{ margin: 8, color: "#F23F1F",}}
+          style={{ margin: 8, color: "#F23F1F" }}
         />
         <Ionicons
           name="ios-chatbubbles-outline"
