@@ -4,12 +4,11 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import {Tabs, HomeStack} from "./src/Route";
+import React, { Component } from "react";
+import { Tabs, HomeStack } from "./src/Route";
 
-export default class App extends Component{
+export default class App extends Component {
   render() {
     return <Tabs />;
   }
 }
-
