@@ -31,22 +31,22 @@ export default class Home extends Component {
           }}
         />
 
-        <View style={{ height: H / 6, width: W }}>
-          <Swiper style={{ height: H / 6, width: W }} showsButtons={true}>
+        <View style={{ height: H / 5, width: W }}>
+          <Swiper style={{ height: H / 5, width: W }} showsButtons={true}>
             <Image
-              style={{ width: W, height: H / 6 }}
+              style={{ width: W, height: H / 5 }}
               source={require("./../../Images/banner1.jpg")}
             />
             <Image
-              style={{ width: W, height: H / 6 }}
+              style={{ width: W, height: H / 5 }}
               source={require("./../../Images/banner2.jpg")}
             />
             <Image
-              style={{ width: W, height: H / 6 }}
+              style={{ width: W, height: H / 5 }}
               source={require("./../../Images/banner3.jpg")}
             />
             <Image
-              style={{ width: W, height: H / 6 }}
+              style={{ width: W, height: H / 5 }}
               source={require("./../../Images/banner4.jpg")}
             />
           </Swiper>

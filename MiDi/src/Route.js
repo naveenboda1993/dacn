@@ -1,4 +1,5 @@
 import React from "react";
+import {Dimensions} from 'react-native';
 import { StackNavigator, TabNavigator } from "react-navigation";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Octicons from "react-native-vector-icons/Octicons";
@@ -10,7 +11,7 @@ import User from "./Components/User/User";
 import Mall from "./Components/Mall/Mall";
 import Search from "./Components/Search/Search";
 import SearchHeader from "./Components/Search/SearchHeader";
-
+const height = Dimensions.get("window");
 export const HomeStack = StackNavigator(
   {
     ManHinh_Home: {
@@ -56,7 +57,7 @@ export const Tabs = TabNavigator(
       navigationOptions: {
         tabBarLabel: "Home",
         tabBarIcon: ({ tintColor }) => (
-          <SimpleLineIcons name="home" size={20} style={{ color: tintColor }} />
+          <SimpleLineIcons name="home" size={14} style={{ color: tintColor }} />
         )
       }
     },
@@ -68,7 +69,7 @@ export const Tabs = TabNavigator(
         tabBarIcon: ({ tintColor }) => (
           <SimpleLineIcons
             name="handbag"
-            size={20}
+            size={14}
             style={{ color: tintColor }}
           />
         )
@@ -80,7 +81,7 @@ export const Tabs = TabNavigator(
       navigationOptions: {
         tabBarLabel: "Tôi",
         tabBarIcon: ({ tintColor }) => (
-          <SimpleLineIcons name="user" size={20} style={{ color: tintColor }} />
+          <SimpleLineIcons name="user" size={14} style={{ color: tintColor }} />
         )
       }
     }
@@ -90,7 +91,12 @@ export const Tabs = TabNavigator(
     swipeEnables: true, // có thể kéo giữa các màn hình không cần bấm nút
     tabBarOptions: {
       style: {
-        backgroundColor: "#F9F9F9" //background tabBar
+        backgroundColor: "whitesmoke", //background tabBar
+        height : height/15,
+        margin:0
+      },
+      labelStyle: {
+        margin:0
       },
       activeTintColor: "#F23F1F", //màu chữ khi được click
       inactiveTintColor: "#818085", //màu chữ khi không được click

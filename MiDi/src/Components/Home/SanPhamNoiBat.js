@@ -13,31 +13,38 @@ import {
 } from "react-native";
 import Swiper from "react-native-swiper";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
-
+const url = "http://192.168.56.1:8080/midishop/images/product/";
+import sanphamnoibat from "../../API/FeaturedProduct";
 
 var H = Dimensions.get("window").height;
 var W = Dimensions.get("window").width;
 
 export default class SanPhamNoiBat extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { types: [], topProducts: [] };
+  }
+  componentDidMount() {
+    sanphamnoibat().then(resJSON => {
+      console.log(resJSON);
+      const { type, product } = resJSON;
+      this.setState({ types: type, topProducts: product });
+    });
+  }
   render() {
-    return <View>
-        <View style={{ backgroundColor: "#FF5722", height: H * 0.01, marginTop: 5 }} />
-        <View style={styles.wrapper}>
-          <View style={styles.productContainer}>
-            <Image style={styles.productImage} source={require("./../../Images/banner2.jpg")} />
-            <View style={styles.productInfo}>
-              <Text style={styles.txtName}>abc</Text>
-              <Text style={styles.txtPrice}>10000 VNĐ</Text>
-              <View style={styles.lastRowInfo}>
-                <View style={{ height: 12, width: 12, borderRadius: 6, backgroundColor: "orange" }} />
-                <TouchableOpacity onPress={() => this.gotoDetail(product)}>
-                  <Text style={styles.txtShowDetail}>Xem chi tiết</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
-          </View>
-        </View>
-      </View>;
+    const { topProducts } = this.state;
+    return <ListView enableEmptySections dataSource={new ListView.DataSource(
+          {
+            rowHasChanged: (r1, r2) => r1 !== r2
+          }
+        ).cloneWithRows(topProducts)} renderRow={product => <TouchableOpacity onPress={console.log("asasas")}>
+            <Image source={{ uri: `${url}${product.images[0]}` }} style={{ width: 100, height: 200 }} />
+            <Text>{product.name}</Text>
+            <Text>{product.price} VNĐ</Text>
+          </TouchableOpacity>} renderSeparator={(sectionId, rowId) => {
+          if (rowId % 2 === 1) return <View style={{ width: 10, height: 10 }} />;
+          return null;
+        }} />;
   }
 }
 {
