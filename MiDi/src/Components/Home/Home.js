@@ -8,121 +8,67 @@ import {
   Image,
   StyleSheet,
   StatusBar,
-  TouchableOpacity
+  TouchableOpacity,
+  ListView
 } from "react-native";
 import Swiper from "react-native-swiper";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 
 import SearchHeader from "../Search/SearchHeader";
+import ThuongHieu from "./ThuongHieu";
+import SanPhamNoiBat from "./SanPhamNoiBat";
 
 var H = Dimensions.get("window").height;
 var W = Dimensions.get("window").width;
 
 export default class Home extends Component {
   render() {
-    return <View style={styles.container}>
-        <SearchHeader goToSearch={() => {
+    return (
+      <ScrollView style={styles.container}>
+        <SearchHeader
+          goToSearch={() => {
             this.props.navigation.navigate("ManHinh_Search");
-          }} />
+          }}
+        />
 
-        <View
-          style={{ height: H * 0.3, width: W, backgroundColor: "black" }}
-        >
-          {/* <Swiper style={{ height: H * 0.3, width: W }} showsButtons={true}>
-            <View style={{ height: H * 0.3 }}>
-              <Image
-                style={{ width: W, height: H * 0.3 }}
-                source={require("./../../Images/banner2.jpg")}
-              />
-            </View>
-          </Swiper> */}
+        <View style={{ height: H / 6, width: W }}>
+          <Swiper style={{ height: H / 6, width: W }} showsButtons={true}>
+            <Image
+              style={{ width: W, height: H / 6 }}
+              source={require("./../../Images/banner1.jpg")}
+            />
+            <Image
+              style={{ width: W, height: H / 6 }}
+              source={require("./../../Images/banner2.jpg")}
+            />
+            <Image
+              style={{ width: W, height: H / 6 }}
+              source={require("./../../Images/banner3.jpg")}
+            />
+            <Image
+              style={{ width: W, height: H / 6 }}
+              source={require("./../../Images/banner4.jpg")}
+            />
+          </Swiper>
         </View>
 
-        <View style={{ backgroundColor: "#FF5722", height: H * 0.01 }}>
-          <Text />
-        </View>
-
-        <View style={{ height: H * 0.18 }}>
-          <Text
-            style={{
-              color: "#FF5722",
-              marginLeft: 5,
-              fontWeight: "bold",
-              fontFamily: "Cochin"
-            }}
-          >
-            MIDI MALL
-          </Text>
-          <ScrollView horizontal contentContainerStyle={styles.contentContainer}>
-            <View>
-              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/1.jpg")} />
-              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/2.jpg")} />
-            </View>
-            <View>
-              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/3.jpg")} />
-              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/4.jpg")} />
-            </View>
-            <View>
-              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/5.jpg")} />
-              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/6.jpg")} />
-            </View>
-
-            <View>
-              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/7.jpg")} />
-              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/8.jpg")} />
-            </View>
-            <View>
-              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/9.jpg")} />
-              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/10.jpg")} />
-            </View>
-            <View>
-              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/11.jpg")} />
-              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/12.jpg")} />
-            </View>
-          </ScrollView>
-        </View>
-        <View style={{ height: H * 0.01, flexDirection: "row", marginLeft: 10,alignItems: "center" }}>
-          <EvilIcons name="check" size={12} style={{ color: "#ff5722"}} />
-          <Text style={{ color: "#FF5722", fontSize: 12, marginRight: 20 }}>
-            Miễn phí trả hàng
-          </Text>
-          <EvilIcons name="check" size={12} style={{ color: "#ff5722" }} />
-          <Text style={{ color: "#FF5722", fontSize: 12, marginRight: 20 }}>
-            Chính hãng 100%
-          </Text>
-          <EvilIcons name="check" size={12} style={{ color: "#ff5722" }} />
-          <Text style={{ color: "#FF5722", fontSize: 12 }}>
-            Giao miễn phí
-          </Text>
-        </View>
-
-        <View style={{ backgroundColor: "#FF5722", height: H * 0.01, marginTop: 5 }}>
-          <Text />
-        </View>
-
-
-      </View>;
+        <ThuongHieu />
+        <SanPhamNoiBat />
+      </ScrollView>
+    );
   }
 }
 {
   /* ------------------- STYLES -------------------------- */
 }
+const produtWidth = (W - 40) / 2;
+const productImageHeight = produtWidth;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff"
   },
-  imgthuonghieu: {
-    width: W * 0.26,
-    height: H * 0.06,
-    marginLeft: 5,
-    marginBottom: 3,
-    marginTop: 3,
-    borderWidth: 0.5,
-    borderColor: "black"
-  },
 
-  wrapper: {},
   slide1: {
     width: W,
     height: H * 0.3,
@@ -146,5 +92,61 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 30,
     fontWeight: "bold"
+  },
+
+  wrapper: {
+    backgroundColor: "#fff",
+    shadowColor: "#2E272B",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.2,
+    margin: 5,
+    paddingHorizontal: 5
+  },
+
+  productContainer: {
+    flexDirection: "row",
+    paddingVertical: 15,
+    borderTopColor: "#F0F0F0",
+    borderBottomColor: "rgba(231, 76, 60,1.0)",
+    borderLeftColor: "#FFF",
+    borderRightColor: "#FFF",
+    borderWidth: 1
+  },
+  titleStyle: {
+    fontFamily: "Avenir",
+    color: "#B10D65",
+    fontSize: 20
+  },
+  productImage: {
+    width: produtWidth,
+    height: productImageHeight
+  },
+  productInfo: {
+    justifyContent: "space-between",
+    marginLeft: 15,
+    flex: 1
+  },
+  lastRowInfo: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center"
+  },
+  txtName: {
+    marginVertical: 5,
+    paddingLeft: 5,
+    fontFamily: "Avenir",
+    color: "black",
+    fontWeight: "200"
+  },
+  txtPrice: {
+    fontFamily: "Avenir",
+    marginRight: 5,
+    color: "#B10D65"
+  },
+
+  txtShowDetail: {
+    fontFamily: "Avenir",
+    color: "#B10D65",
+    fontSize: 12
   }
 });
