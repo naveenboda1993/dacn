@@ -12,13 +12,13 @@ import Search from "./Components/Search/Search";
 import SearchHeader from "./Components/Search/SearchHeader";
 
 export const HomeStack = StackNavigator(
-  {    ManHinh_Home: {
+  {
+    ManHinh_Home: {
       screen: Home
     },
     ManHinh_SearchHeader: {
       screen: SearchHeader
     },
-
     ManHinh_Search: {
       screen: Search
     }
@@ -34,12 +34,13 @@ export const UserStack = StackNavigator({
 });
 export const MallStack = StackNavigator(
   {
-    ManHinh_SearchHeader: {
-      screen: SearchHeader
-    },
     ManHinh_Mall: {
       screen: Mall
     },
+    ManHinh_SearchHeader: {
+      screen: SearchHeader
+    },
+    
     ManHinh_Search: {
       screen: Search
     }

@@ -6,10 +6,6 @@ import {
   Dimensions,
   TouchableOpacity
 } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import Octicons from "react-native-vector-icons/Octicons";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 
 const screen = Dimensions.get("window");

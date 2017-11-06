@@ -7,75 +7,144 @@ import {
   ScrollView,
   Image,
   StyleSheet,
-  StatusBar
+  StatusBar,
+  TouchableOpacity
 } from "react-native";
 import Swiper from "react-native-swiper";
-
-import Ionicons from "react-native-vector-icons/Ionicons";
-import Octicons from "react-native-vector-icons/Octicons";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 
-
 import SearchHeader from "../Search/SearchHeader";
-import Slider from "./Slider";
 
-const screen = Dimensions.get("window");
+var H = Dimensions.get("window").height;
+var W = Dimensions.get("window").width;
 
 export default class Home extends Component {
   render() {
-    return (
-      <View style={styles.container}>
-      {/* ------------------- THANH SEARCH HEADER -------------------------- */}
-        <SearchHeader />
-        {/* ------------------- SLIDER QUẢNG CÁO -------------------------- */}
-        <Swiper
-        dot={<View style={{backgroundColor: 'rgba(255,255,255,.3)', width: 0, height: 0, borderRadius: 7, marginLeft: 7, marginRight: 7}} />}
-          activeDot={<View style={{backgroundColor: '#fff', width: 0, height:0, borderRadius: 7, marginLeft: 7, marginRight: 7}} />}
-          paginationStyle={{
-            bottom: 70
-          }}
-          loop={true}
-          autoplay
+    return <View style={styles.container}>
+        <SearchHeader goToSearch={() => {
+            this.props.navigation.navigate("ManHinh_Search");
+          }} />
+
+        <View
+          style={{ height: H * 0.3, width: W, backgroundColor: "black" }}
         >
-          <View style={styles.slide}>
-            <Image
-              style={styles.image}
-              source={require("./../../Images/banner1.jpg")}
-            />
-          </View>
-          <View style={styles.slide}>
-            <Image
-              style={styles.image}
-              source={require("./../../Images/banner2.jpg")}
-            />
-          </View>
-          <View style={styles.slide}>
-            <Image
-              style={styles.image}
-              source={require("./../../Images/banner3.jpg")}
-            />
-          </View>
-        </Swiper>
-        {/* ------------------- KHOẢNH CÁCH CAM -------------------------- */}
-        <View style={{backgroundColor: "#FF5722", height: screen.height*1/100}}>
-          <Text></Text>
+          {/* <Swiper style={{ height: H * 0.3, width: W }} showsButtons={true}>
+            <View style={{ height: H * 0.3 }}>
+              <Image
+                style={{ width: W, height: H * 0.3 }}
+                source={require("./../../Images/banner2.jpg")}
+              />
+            </View>
+          </Swiper> */}
         </View>
-        {/* ------------------- Midi Mall -------------------------- */}
-      </View>
-    );
+
+        <View style={{ backgroundColor: "#FF5722", height: H * 0.01 }}>
+          <Text />
+        </View>
+
+        <View style={{ height: H * 0.18 }}>
+          <Text
+            style={{
+              color: "#FF5722",
+              marginLeft: 5,
+              fontWeight: "bold",
+              fontFamily: "Cochin"
+            }}
+          >
+            MIDI MALL
+          </Text>
+          <ScrollView horizontal contentContainerStyle={styles.contentContainer}>
+            <View>
+              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/1.jpg")} />
+              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/2.jpg")} />
+            </View>
+            <View>
+              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/3.jpg")} />
+              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/4.jpg")} />
+            </View>
+            <View>
+              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/5.jpg")} />
+              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/6.jpg")} />
+            </View>
+
+            <View>
+              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/7.jpg")} />
+              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/8.jpg")} />
+            </View>
+            <View>
+              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/9.jpg")} />
+              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/10.jpg")} />
+            </View>
+            <View>
+              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/11.jpg")} />
+              <Image style={styles.imgthuonghieu} source={require("../../Images/thuonghieu/12.jpg")} />
+            </View>
+          </ScrollView>
+        </View>
+        <View style={{ height: H * 0.01, flexDirection: "row", marginLeft: 10,alignItems: "center" }}>
+          <EvilIcons name="check" size={12} style={{ color: "#ff5722"}} />
+          <Text style={{ color: "#FF5722", fontSize: 12, marginRight: 20 }}>
+            Miễn phí trả hàng
+          </Text>
+          <EvilIcons name="check" size={12} style={{ color: "#ff5722" }} />
+          <Text style={{ color: "#FF5722", fontSize: 12, marginRight: 20 }}>
+            Chính hãng 100%
+          </Text>
+          <EvilIcons name="check" size={12} style={{ color: "#ff5722" }} />
+          <Text style={{ color: "#FF5722", fontSize: 12 }}>
+            Giao miễn phí
+          </Text>
+        </View>
+
+        <View style={{ backgroundColor: "#FF5722", height: H * 0.01, marginTop: 5 }}>
+          <Text />
+        </View>
+
+
+      </View>;
   }
 }
-{/* ------------------- STYLES -------------------------- */}
+{
+  /* ------------------- STYLES -------------------------- */
+}
 const styles = StyleSheet.create({
-  img: { width: screen.width, height: screen.height * 0.2 },
   container: {
-    flex: 0.25,
+    flex: 1,
+    backgroundColor: "#fff"
+  },
+  imgthuonghieu: {
+    width: W * 0.26,
+    height: H * 0.06,
+    marginLeft: 5,
+    marginBottom: 3,
+    marginTop: 3,
+    borderWidth: 0.5,
+    borderColor: "black"
   },
 
-  image: {
-    width: screen.width,
-    height: screen.height * 0.2
+  wrapper: {},
+  slide1: {
+    width: W,
+    height: H * 0.3,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#9DD6EB"
+  },
+  slide2: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#97CAE5"
+  },
+  slide3: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#92BBD9"
+  },
+  text: {
+    color: "#fff",
+    fontSize: 30,
+    fontWeight: "bold"
   }
 });

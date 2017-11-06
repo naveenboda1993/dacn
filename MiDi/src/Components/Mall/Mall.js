@@ -7,7 +7,12 @@ export default class Mall extends Component {
   render() {
     return (
       <View>
-            <SearchHeader />
+            <SearchHeader 
+        
+          goToSearch ={()=>{
+            this.props.navigation.navigate("ManHinh_Search")
+          }}
+        />
       </View>
     )
 

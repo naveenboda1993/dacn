@@ -9,6 +9,6 @@ import { Tabs, HomeStack } from "./src/Route";
 
 export default class App extends Component {
   render() {
-    return <HomeStack />;
+    return <Tabs />;
   }
 }

@@ -8,19 +8,18 @@ import {
 } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Octicons from "react-native-vector-icons/Octicons";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import { StackNavigator, TabNavigator } from "react-navigation";
-const screen = Dimensions.get("window");
+var H = Dimensions.get("window").height;
+var W = Dimensions.get("window").width;
 
 export default class SearchHeader extends Component {
   render() {
     return (
-      <View style={{ flexDirection: "row" }}>
+      <View style={{ flexDirection: "row"}}>
         <TouchableOpacity
           onPress={() => {
-            this.props.navigation.navigate("ManHinh_Search");
+            this.props.goToSearch()
           }}
         >
           <View
