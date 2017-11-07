@@ -9,7 +9,8 @@ import {
   StyleSheet,
   StatusBar,
   TouchableOpacity,
-  ListView
+  ListView,
+  Button
 } from "react-native";
 import Swiper from "react-native-swiper";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
@@ -33,79 +34,85 @@ export default class SanPhamNoiBat extends Component {
   }
   render() {
     const { topProducts } = this.state;
-    return <ListView enableEmptySections dataSource={new ListView.DataSource(
-          {
-            rowHasChanged: (r1, r2) => r1 !== r2
-          }
-        ).cloneWithRows(topProducts)} renderRow={product => <TouchableOpacity onPress={console.log("asasas")}>
-            <Image source={{ uri: `${url}${product.images[0]}` }} style={{ width: 100, height: 200 }} />
-            <Text>{product.name}</Text>
-            <Text>{product.price} VNĐ</Text>
-          </TouchableOpacity>} renderSeparator={(sectionId, rowId) => {
-          if (rowId % 2 === 1) return <View style={{ width: 10, height: 10 }} />;
-          return null;
-        }} />;
+    return <View>
+        <View style={{ backgroundColor: "#FF5722", height: H * 0.01, marginTop: 10 }} />
+        <View style={styles.container}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Sản phẩm nổi bật</Text>
+          </View>
+
+          <ListView contentContainerStyle={styles.body} enableEmptySections dataSource={new ListView.DataSource(
+              {
+                rowHasChanged: (r1, r2) => r1 !== r2
+              }
+            ).cloneWithRows(topProducts)} renderRow={product => <TouchableOpacity style={styles.productContainer} onPress={console.log("asasas")}>
+                <Image source={{ uri: `${url}${product.images[0]}` }} style={styles.productImage} />
+                <Text style={styles.produceName}>
+                  {product.name.toUpperCase()}
+                </Text>
+                <Text style={styles.producePrice}>{product.price}$</Text>
+              </TouchableOpacity>} renderSeparator={(sectionId, rowId) => {
+              if (rowId % 2 === 1) return <View style={{ width, height: 10 }} />;
+              return null;
+            }} />
+        </View>
+        <View style={{ borderColor: "#FF5722", margin: 5 }}>
+          <TouchableOpacity onPress={() => {
+              this.props.goToMall();
+            }}>
+            <Text style={{color: "#FF5722", textAlign: "center", fontSize: 20, fontFamily: "Avenir"}} >Xem thêm</Text>
+          </TouchableOpacity>
+        </View>
+      </View>;
   }
 }
-{
-  /* ------------------- STYLES -------------------------- */
-}
-const produtWidth = (W - 40) / 2;
-const productImageHeight = produtWidth;
+const { width } = Dimensions.get("window");
+const produtWidth = (width - 20) / 2;
+const productImageHeight = produtWidth / 361 * 452;
+
 const styles = StyleSheet.create({
-  wrapper: {
-    backgroundColor: "#fff",
+  container: {
+    flex: 1,
+    backgroundColor: "#fff"
+  },
+  titleContainer: {
+    height: 40,
+    justifyContent: "center",
+    paddingLeft: 10,
+    backgroundColor: "whitesmoke"
+  },
+  title: {
+    color: "#FF5722",
+    fontSize: 16
+  },
+  body: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    flexWrap: "wrap",
+    paddingBottom: 10,
+    backgroundColor: "whitesmoke"
+  },
+  productContainer: {
+    width: produtWidth,
     shadowColor: "#2E272B",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2,
-    margin: 5,
-    paddingHorizontal: 5
-  },
-
-  productContainer: {
-    flexDirection: "row",
-    paddingVertical: 15,
-    borderTopColor: "#F0F0F0",
-    borderBottomColor: "rgba(231, 76, 60,1.0)",
-    borderLeftColor: "#FFF",
-    borderRightColor: "#FFF",
-    borderWidth: 1
-  },
-  titleStyle: {
-    fontFamily: "Avenir",
-    color: "#B10D65",
-    fontSize: 20
+    backgroundColor:"#fff"
   },
   productImage: {
     width: produtWidth,
     height: productImageHeight
   },
-  productInfo: {
-    justifyContent: "space-between",
-    marginLeft: 15,
-    flex: 1
-  },
-  lastRowInfo: {
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center"
-  },
-  txtName: {
+  produceName: {
     marginVertical: 5,
-    paddingLeft: 5,
+    paddingLeft: 10,
     fontFamily: "Avenir",
     color: "black",
-    fontWeight: "200"
   },
-  txtPrice: {
+  producePrice: {
+    marginBottom: 5,
+    paddingLeft: 10,
     fontFamily: "Avenir",
-    marginRight: 5,
-    color: "#B10D65"
-  },
-
-  txtShowDetail: {
-    fontFamily: "Avenir",
-    color: "#B10D65",
-    fontSize: 12
+    color: "#FF5722"
   }
 });

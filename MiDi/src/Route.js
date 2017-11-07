@@ -11,6 +11,7 @@ import User from "./Components/User/User";
 import Mall from "./Components/Mall/Mall";
 import Search from "./Components/Search/Search";
 import SearchHeader from "./Components/Search/SearchHeader";
+import SanPhamNoiBat from "./Components/Home/SanPhamNoiBat";
 const height = Dimensions.get("window");
 export const HomeStack = StackNavigator(
   {
@@ -22,6 +23,9 @@ export const HomeStack = StackNavigator(
     },
     ManHinh_Search: {
       screen: Search
+    },
+    ManHinh_SanPhamNoiBat:{
+      screen: SanPhamNoiBat
     }
   },
   {
