@@ -15,38 +15,20 @@ var W = Dimensions.get("window").width;
 
 export default class SearchHeader extends Component {
   render() {
-    return (
-      <View style={{ flexDirection: "row"}}>
-        <TouchableOpacity
-          onPress={() => {
-            this.props.goToSearch()
-          }}
-        >
-          <View
-            style={{
-              flexDirection: "row",
-              width: 280,
-              backgroundColor: "#F0F0F0",
-              margin: 8,
-              borderRadius: 3,
-              paddingRight: 10
-            }}
-          >
+    return <View style={{ flexDirection: "row" }}>
+        <TouchableOpacity onPress={() => {
+            this.props.goToSearch();
+          }}>
+          <View style={{ flexDirection: "row", width: 280, backgroundColor: "#F0F0F0", margin: 8, borderRadius: 3, paddingRight: 10 }}>
             <EvilIcons name="search" size={22} />
-            <Text style={{ color: "#F23F1F", paddingLeft: 5, fontSize: 16, fontFamily: "Avenir", }}>Midi</Text>
+            <Text style={{ color: "#F23F1F", paddingLeft: 5, fontSize: 16, fontFamily: "Avenir" }}>
+              Snackers
+            </Text>
           </View>
         </TouchableOpacity>
-        <Ionicons
-          name="ios-cart-outline"
-          size={22}
-          style={{ margin: 8, color: "#F23F1F",}}
-        />
-        <Ionicons
-          name="ios-chatbubbles-outline"
-          size={22}
-          style={{ margin: 8, color: "#F23F1F" }}
-        />
-      </View>
-    );
+        <TouchableOpacity>
+          <Ionicons name="ios-chatbubbles-outline" size={22} style={{ margin: 8, color: "#F23F1F" }} />
+        </TouchableOpacity>
+      </View>;
   }
 }

@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     paddingLeft: 10,
     fontFamily: "Avenir",
-    color: "black",
+    color: "#A7A7A7",
   },
   producePrice: {
     marginBottom: 5,

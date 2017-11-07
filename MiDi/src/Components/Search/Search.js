@@ -6,9 +6,10 @@ import {
   ScrollView,
   View,
   Image,
-  Dimensions
+  Dimensions,
+  TextInput
 } from "react-native";
-
+import EvilIcons from "react-native-vector-icons/EvilIcons";
 import sp1 from "../../media/32.jpg";
 import sp4 from "../../media/32.jpg";;
 
@@ -33,8 +34,20 @@ class Search extends Component {
       showDetailContainer,
       wrapper
     } = styles;
-    return (
-      <ScrollView style={wrapper}>
+    return <ScrollView style={wrapper}>
+        <View style={{ flexDirection: "row" }}>
+          <View style={{ flexDirection: "row", width: 300, backgroundColor: "#F0F0F0", margin: 8, borderRadius: 3, paddingRight: 10, alignItems: "center", padding: 3 }}>
+            <EvilIcons name="search" size={30} />
+            <TextInput style={{ height: 40, width: 260 }} underlineColorAndroid="transparent" placeholder="Tìm kiếm sản phẩm" onChangeText={text => this.setState(
+                  { text }
+                )} />
+          </View>
+          <TouchableOpacity onPress={() => {
+              this.props.navigation.goBack();
+            }}>
+            <Text style={{ color: "#F23F1F" }}>Hủy</Text>
+          </TouchableOpacity>
+        </View>
         <View style={product}>
           <Image source={sp1} style={productImage} />
           <View style={mainRight}>
@@ -43,15 +56,7 @@ class Search extends Component {
             <Text style={txtMaterial}>Material Fur</Text>
             <View style={{ flexDirection: "row" }}>
               <Text style={txtColor}>Color white</Text>
-              <View
-                style={{
-                  height: 15,
-                  width: 15,
-                  backgroundColor: "white",
-                  borderRadius: 15,
-                  marginLeft: 10
-                }}
-              />
+              <View style={{ height: 15, width: 15, backgroundColor: "white", borderRadius: 15, marginLeft: 10 }} />
             </View>
             <TouchableOpacity style={showDetailContainer}>
               <Text style={txtShowDetail}>SHOW DETAILS</Text>
@@ -68,15 +73,7 @@ class Search extends Component {
               <Text style={txtColor}>Color white</Text>
               <View style={{ flexDirection: "row" }}>
                 <Text style={txtColor}>Color white</Text>
-                <View
-                  style={{
-                    height: 15,
-                    width: 15,
-                    backgroundColor: "white",
-                    borderRadius: 15,
-                    marginLeft: 10
-                  }}
-                />
+                <View style={{ height: 15, width: 15, backgroundColor: "white", borderRadius: 15, marginLeft: 10 }} />
               </View>
             </View>
             <TouchableOpacity style={showDetailContainer}>
@@ -84,8 +81,7 @@ class Search extends Component {
             </TouchableOpacity>
           </View>
         </View>
-      </ScrollView>
-    );
+      </ScrollView>;
   }
 }
 

@@ -23,46 +23,29 @@ var W = Dimensions.get("window").width;
 
 export default class Home extends Component {
   render() {
-    return (
-      <ScrollView style={styles.container}>
-        <SearchHeader
-          goToSearch={() => {
+    return <ScrollView style={styles.container}>
+        <SearchHeader goToSearch={() => {
             this.props.navigation.navigate("ManHinh_Search");
-          }}
-        />
+          }} goToCartView={() => {
+            this.props.navigation.navigate("ManHinh_CartView");
+          }} />
 
         <View style={{ height: H / 5, width: W }}>
           <Swiper style={{ height: H / 5, width: W }} showsButtons={true}>
-            <Image
-              style={{ width: W, height: H / 5 }}
-              source={require("./../../Images/banner1.jpg")}
-            />
-            <Image
-              style={{ width: W, height: H / 5 }}
-              source={require("./../../Images/banner2.jpg")}
-            />
-            <Image
-              style={{ width: W, height: H / 5 }}
-              source={require("./../../Images/banner3.jpg")}
-            />
-            <Image
-              style={{ width: W, height: H / 5 }}
-              source={require("./../../Images/banner4.jpg")}
-            />
+            <Image style={{ width: W, height: H / 5 }} source={require("./../../Images/banner1.jpg")} />
+            <Image style={{ width: W, height: H / 5 }} source={require("./../../Images/banner2.jpg")} />
+            <Image style={{ width: W, height: H / 5 }} source={require("./../../Images/banner3.jpg")} />
+            <Image style={{ width: W, height: H / 5 }} source={require("./../../Images/banner4.jpg")} />
           </Swiper>
         </View>
 
         <ThuongHieu />
-        <SanPhamNoiBat
-          goToProductDetail={() => {
+        <SanPhamNoiBat goToProductDetail={() => {
             this.props.navigation.navigate("ManHinh_ProductDetail");
-          }}
-          goToMall={() => {
+          }} goToMall={() => {
             this.props.navigation.navigate("ManHinh_Mall");
-          }}
-        />
-      </ScrollView>
-    );
+          }} />
+      </ScrollView>;
   }
 }
 {

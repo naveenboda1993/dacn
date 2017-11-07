@@ -9,11 +9,11 @@ import {
   TouchableOpacity
 } from "react-native";
 
-import img1 from "../media/32.jpg";
-import img2 from "../media/32.jpg";
+import img1 from "../../media/32.jpg";
+import img2 from "../../media/32.jpg";
 
-const back = require("../media/next.png");
-const cart = require("../media/cart.png");
+const back = require("../../media/next.png");
+const cart = require("../../media/cart.png");
 
 export default class ProductDetail extends Component {
   render() {

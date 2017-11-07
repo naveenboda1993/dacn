@@ -14,8 +14,20 @@ import ShoesMen from "./Components/Mall/ShoesMen";
 import ShoesWomen from "./Components/Mall/ShoesWomen";
 import SearchHeader from "./Components/Search/SearchHeader";
 import SanPhamNoiBat from "./Components/Home/SanPhamNoiBat";
-import ProductDetail from "./ProductDetail/ProductDetail";
+import ProductDetail from "./Components/ProductDetail/ProductDetail";
+import Cart from "./Components/Cart/Cart";
 const height = Dimensions.get("window");
+
+
+export const CartStack = StackNavigator({
+  ManHinh_Cart: {
+    screen: Cart
+  }
+},
+{
+  headerMode: "none"
+});
+
 export const HomeStack = StackNavigator(
   {
     ManHinh_Home: {
@@ -30,7 +42,7 @@ export const HomeStack = StackNavigator(
     ManHinh_SanPhamNoiBat: {
       screen: SanPhamNoiBat
     },
-    ManHinh_ProductDetail:{
+    ManHinh_ProductDetail: {
       screen: ProductDetail
     }
   },
@@ -43,6 +55,7 @@ export const UserStack = StackNavigator({
     screen: User
   }
 });
+
 export const MallStack = StackNavigator(
   {
     ManHinh_Mall: {
@@ -60,12 +73,13 @@ export const MallStack = StackNavigator(
     headerMode: "SearchHeader"
   }
 );
+
 export const Tabs = TabNavigator(
   {
     Home: {
       screen: HomeStack,
       navigationOptions: {
-        tabBarLabel: "Home",
+        tabBarLabel: "Trang chủ",
         tabBarIcon: ({ tintColor }) => (
           <SimpleLineIcons name="home" size={14} style={{ color: tintColor }} />
         )
@@ -75,10 +89,23 @@ export const Tabs = TabNavigator(
     Mall: {
       screen: MallStack,
       navigationOptions: {
-        tabBarLabel: "Mall",
+        tabBarLabel: "Mua sắm",
         tabBarIcon: ({ tintColor }) => (
           <SimpleLineIcons
             name="handbag"
+            size={14}
+            style={{ color: tintColor }}
+          />
+        )
+      }
+    },
+    Cart: {
+      screen: CartStack,
+      navigationOptions: {
+        tabBarLabel: "Giỏ hàng",
+        tabBarIcon: ({ tintColor }) => (
+          <SimpleLineIcons
+            name="basket"
             size={14}
             style={{ color: tintColor }}
           />
