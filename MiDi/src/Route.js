@@ -54,6 +54,9 @@ export const UserStack = StackNavigator({
   ManHinh_User: {
     screen: User
   }
+},
+{
+  headerMode: "none"
 });
 
 export const MallStack = StackNavigator(

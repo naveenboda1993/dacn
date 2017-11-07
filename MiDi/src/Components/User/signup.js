@@ -1,0 +1,138 @@
+import React, { Component } from 'react';
+import {
+  View,
+  TextInput,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Alert,
+  Image
+} from 'react-native';
+import register from '../../api/register';
+
+export default class SignUp extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: '',
+            email: '',
+            password: '',
+        };
+    }
+
+    Success() {
+        Alert.alert(
+            'Notice',
+            'Đăng ký thành công',
+            [
+                { text: 'OK', onPress: () => this.gotoSignIn() }
+            ],
+            { cancelable: false }
+        );
+    }
+
+    Fail(notification) {
+        Alert.alert(
+            'Notice',
+            notification,
+            [
+                { text: 'OK', onPress: () => this.removeEmail() }
+            ],
+            { cancelable: false }
+        );
+    }
+
+    gotoSignIn(){
+      const {navigate} = this.props.navigation;
+      navigate('SignIn');
+    }
+
+    removeEmail() {
+        this.setState({ email: '' });
+    }
+
+    registerUser() {
+        const { name, email, password} = this.state;
+        register(email, name, password)
+        .then(res => {
+            if (res === 'THANH_CONG') return this.Success();
+            else if(res === 'THAT_BAI_ROI') return this.Fail("Không được để trống");
+            this.Fail("Email đã được sử dụng");
+        });
+    }
+
+    render() {
+        const { inputStyle, bigButton, buttonText } = styles;
+        return (
+          <View style={{flex: 1,backgroundColor:'whitesmoke'}}>
+            <View style={{alignSelf:'center',alignItems: 'center',flex: 1,justifyContent:'center',height: 70,width: 70}}>
+              <Image
+                source={require('../../media/sun.png')}
+              />
+              <Text style={{fontFamily:'Avenir',color: 'blue'}}>TVT Shop</Text>
+            </View>
+            <View style={{flex:1}}>
+                <TextInput
+                    underlineColorAndroid='transparent'
+                    style={inputStyle}
+                    placeholder="Họ tên"
+                    value={this.state.name}
+                    onChangeText={text => this.setState({ name: text })}
+                />
+                <TextInput
+                    underlineColorAndroid='transparent'
+                    style={inputStyle}
+                    placeholder="Email"
+                    value={this.state.email}
+                    onChangeText={text => this.setState({ email: text })}
+                />
+                <TextInput
+                    underlineColorAndroid='transparent'
+                    style={inputStyle}
+                    placeholder="Mật khẩu"
+                    value={this.state.password}
+                    secureTextEntry
+                    onChangeText={text => this.setState({ password: text })}
+                />
+                <TouchableOpacity style={bigButton} onPress={this.registerUser.bind(this)}>
+                    <Text style={buttonText}>ĐĂNG KÝ</Text>
+                </TouchableOpacity>
+            </View>
+            <View style={{flex:1, alignItems: 'center'}}>
+            </View>
+          </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+  inputStyle: {
+      height: 50,
+      backgroundColor: '#fff',
+      marginBottom : 10,
+      borderRadius: 20,
+      paddingLeft: 30,
+      marginRight : 20,
+      marginLeft : 20,
+      borderColor: 'blue',
+      borderWidth: 1
+  },
+  bigButton: {
+      height: 50,
+      borderRadius: 20,
+      borderWidth: 1,
+      borderColor: '#fff',
+      alignItems: 'center',
+      justifyContent: 'center',
+      marginRight : 50,
+      marginLeft : 50,
+      backgroundColor: 'rgba(231, 76, 60,1.0)',
+
+  },
+  buttonText: {
+      fontFamily: 'Avenir',
+      color: '#fff',
+      fontWeight: '400'
+  }
+});
