@@ -14,7 +14,7 @@ import {
 } from "react-native";
 import Swiper from "react-native-swiper";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
-const url = "http://192.168.56.1:8080/midishop/images/product/";
+const url = "http://192.168.56.1:8080/api/images/product/";
 import sanphamnoibat from "../../API/FeaturedProduct";
 
 var H = Dimensions.get("window").height;
@@ -23,13 +23,13 @@ var W = Dimensions.get("window").width;
 export default class SanPhamNoiBat extends Component {
   constructor(props) {
     super(props);
-    this.state = { types: [], topProducts: [] };
+    this.state = {topProducts: [] };
   }
   componentDidMount() {
     sanphamnoibat().then(resJSON => {
       console.log(resJSON);
-      const { type, product } = resJSON;
-      this.setState({ types: type, topProducts: product });
+      const { product } = resJSON;
+      this.setState({topProducts: product });
     });
   }
   render() {

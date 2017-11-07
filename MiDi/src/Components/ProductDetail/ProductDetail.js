@@ -8,14 +8,18 @@ import {
   ScrollView,
   TouchableOpacity
 } from "react-native";
+import global from "../../Global";
 
-import img1 from "../../media/32.jpg";
-import img2 from "../../media/32.jpg";
-
-const back = require("../../media/next.png");
+const back = require("../../media/back.png");
 const cart = require("../../media/cart.png");
 
+const url = "http://192.168.56.1:8080/api/images/product/";
+
 export default class ProductDetail extends Component {
+  addThisProductToCart() {
+    const { product } = this.props;
+    global.addProductToCart(product);
+  }
   render() {
     const {
       wrapper,
@@ -36,73 +40,46 @@ export default class ProductDetail extends Component {
       txtMaterial,
       txtColor
     } = styles;
-    return (
-      <View style={wrapper}>
+    const { name, price, color, material, description, images } = this.props.navigation.state.params.product;
+    return <View style={wrapper}>
         <View style={cardStyle}>
           <View style={header}>
-            <TouchableOpacity onPress={()=>this.props.navigation.goBack()}>
+            <TouchableOpacity onPress={() => {
+                this.props.navigation.goBack();
+              }}>
               <Image style={backStyle} source={back} />
             </TouchableOpacity>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={this.addThisProductToCart.bind(this)}>
               <Image style={cartStyle} source={cart} />
             </TouchableOpacity>
           </View>
           <View style={imageContainer}>
-            <ScrollView
-              style={{
-                flexDirection: "row",
-                padding: 10,
-                height: swiperHeight
-              }}
-              horizontal
-            >
-              <Image source={img1} style={productImageStyle} />
-              <Image source={img2} style={productImageStyle} />
+            <ScrollView style={{ flexDirection: "row", padding: 10, height: swiperHeight }} horizontal>
+              <Image source={{ uri: `${url}${images[0]}` }} style={productImageStyle} />
+              <Image source={{ uri: `${url}${images[1]}` }} style={productImageStyle} />
             </ScrollView>
           </View>
           <View style={footer}>
             <View style={titleContainer}>
               <Text style={textMain}>
-                <Text style={textBlack}>{"back of the".toUpperCase()}</Text>
+                <Text style={textBlack}>{name.toUpperCase()}</Text>
                 <Text style={textHighlight}> / </Text>
-                <Text style={textSmoke}>100$</Text>
+                <Text style={textSmoke}>{price}$</Text>
               </Text>
             </View>
             <View style={descContainer}>
-              <Text style={descStyle}>
-                A delicate layer of eyelash lace brings dreamy elegance to this
-                piece, while smooth, lightweight lining feels luxurious against
-                your skin. We love it with heels for a look that fits in on date
-                night, or with cool booties to add an edge.
-              </Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  paddingTop: 15
-                }}
-              >
-                <Text style={txtMaterial}>Material Fur</Text>
+              <Text style={descStyle}>{description}</Text>
+              <View style={{ flexDirection: "row", justifyContent: "space-between", paddingTop: 15 }}>
+                <Text style={txtMaterial}>Material {material}</Text>
                 <View style={{ flexDirection: "row" }}>
-                  <Text style={txtColor}>Color Black</Text>
-                  <View
-                    style={{
-                      height: 15,
-                      width: 15,
-                      backgroundColor: "black".toLowerCase(),
-                      borderRadius: 15,
-                      marginLeft: 10,
-                      borderWidth: 1,
-                      borderColor: "#C21C70"
-                    }}
-                  />
+                  <Text style={txtColor}>Color {color}</Text>
+                  <View style={{ height: 15, width: 15, backgroundColor: color.toLowerCase(), borderRadius: 15, marginLeft: 10, borderWidth: 1, borderColor: "#C21C70" }} />
                 </View>
               </View>
             </View>
           </View>
         </View>
-      </View>
-    );
+      </View>;
   }
 }
 

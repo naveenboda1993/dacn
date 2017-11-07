@@ -19,7 +19,7 @@ import EvilIcons from "react-native-vector-icons/EvilIcons";
 var H = Dimensions.get("window").height;
 var W = Dimensions.get("window").width;
 
-export default class Slider extends Component {
+export default class ThuongHieu extends Component {
   render() {
     return <View>
         <View style={{ backgroundColor: "#FF5722", height: H * 0.01, marginBottom: 5 }} />

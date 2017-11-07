@@ -31,7 +31,7 @@ export default class Home extends Component {
           }} />
 
         <View style={{ height: H / 5, width: W }}>
-          <Swiper style={{ height: H / 5, width: W }} showsButtons={true}>
+          <Swiper style={{ height: H / 5, width: W }} showsButtons={true} autoplay>
             <Image style={{ width: W, height: H / 5 }} source={require("./../../Images/banner1.jpg")} />
             <Image style={{ width: W, height: H / 5 }} source={require("./../../Images/banner2.jpg")} />
             <Image style={{ width: W, height: H / 5 }} source={require("./../../Images/banner3.jpg")} />

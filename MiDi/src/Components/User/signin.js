@@ -35,10 +35,6 @@ export default class SignIn extends Component {
       });
   }
 
-  goto() {
-    this.props.navigation.navigate("SignUp");
-  }
-
   redirect() {
     this.props.navigation.navigate("User");
   }

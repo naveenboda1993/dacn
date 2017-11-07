@@ -38,10 +38,6 @@ export default class SignUp extends Component {
     );
   }
 
-  gotoSignIn() {
-    const { navigate } = this.props.navigation;
-    navigate("SignIn");
-  }
 
   removeEmail() {
     this.setState({ email: "" });
