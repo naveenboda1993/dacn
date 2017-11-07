@@ -63,17 +63,16 @@ class User extends Component {
       const { user } = this.state;
       const logoutJSX = <View>
           <View>
-            <ImageBackground
-              source={require("../../media/32.jpg")}
-              style={styles.imwrap}
-              resizeMode= 'cover' >
+            <ImageBackground source={require("../../media/32.jpg")} style={styles.imwrap} resizeMode="cover">
               <View style={styles.user}>
                 <Image source={require("../../media/Contacts-104.png")} style={styles.ava} />
-                <TouchableOpacity style={styles.button} onPress={this.goto.bind(this)}>
+                <TouchableOpacity style={styles.button} onPress={() => {
+                    this.props.navigation.navigate("ManHinh_SignIn");
+                  }}>
                   <Text style={styles.text}>Đăng nhập</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.buttonn} onPress={() => {
-                    this.gotoo();
+                    this.props.navigation.navigate("ManHinh_SignUp");
                   }}>
                   <Text style={styles.text}>Đăng ký</Text>
                 </TouchableOpacity>
@@ -82,13 +81,7 @@ class User extends Component {
           </View>
           <View style={{ marginTop: 20 }}>
             <TouchableOpacity style={styles.touch}>
-              <Text
-                style={{
-                  fontFamily: "Avenir",
-                  color: "rgba(231, 76, 60,1.0)",
-                  fontSize: 15
-                }}
-              >
+              <Text style={{ fontFamily: "Avenir", color: "rgba(231, 76, 60,1.0)", fontSize: 15 }}>
                 Trung tâm trợ giúp
               </Text>
               <Image source={require("../../media/next.png")} style={styles.icon} />

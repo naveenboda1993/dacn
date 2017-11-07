@@ -16,17 +16,20 @@ import SearchHeader from "./Components/Search/SearchHeader";
 import SanPhamNoiBat from "./Components/Home/SanPhamNoiBat";
 import ProductDetail from "./Components/ProductDetail/ProductDetail";
 import Cart from "./Components/Cart/Cart";
+import SignIn from "./Components/User/SignIn";
+import SignUp from "./Components/User/SignUp";
 const height = Dimensions.get("window");
 
-
-export const CartStack = StackNavigator({
-  ManHinh_Cart: {
-    screen: Cart
+export const CartStack = StackNavigator(
+  {
+    ManHinh_Cart: {
+      screen: Cart
+    }
+  },
+  {
+    headerMode: "none"
   }
-},
-{
-  headerMode: "none"
-});
+);
 
 export const HomeStack = StackNavigator(
   {
@@ -50,14 +53,22 @@ export const HomeStack = StackNavigator(
     headerMode: "SearchHeader"
   }
 );
-export const UserStack = StackNavigator({
-  ManHinh_User: {
-    screen: User
+export const UserStack = StackNavigator(
+  {
+    ManHinh_User: {
+      screen: User
+    },
+    ManHinh_SignIn: {
+      screen: SignIn
+    },
+    ManHinh_SignUp: {
+      screen: SignUp
+    }
+  },
+  {
+    headerMode: "none"
   }
-},
-{
-  headerMode: "none"
-});
+);
 
 export const MallStack = StackNavigator(
   {
