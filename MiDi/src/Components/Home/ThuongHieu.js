@@ -32,7 +32,7 @@ export default class Slider extends Component {
               fontSize: 16
             }}
           >
-            Midi Mall
+            Thương hiêu ưa chuộng
           </Text>
           <ScrollView horizontal contentContainerStyle={styles.contentContainer} showsHorizontalScrollIndicator={false}>
             <View>

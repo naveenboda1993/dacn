@@ -1,5 +1,5 @@
 import React from "react";
-import {Dimensions} from 'react-native';
+import { Dimensions } from "react-native";
 import { StackNavigator, TabNavigator } from "react-navigation";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Octicons from "react-native-vector-icons/Octicons";
@@ -10,8 +10,11 @@ import Home from "./Components/Home/Home";
 import User from "./Components/User/User";
 import Mall from "./Components/Mall/Mall";
 import Search from "./Components/Search/Search";
+import ShoesMen from "./Components/Mall/ShoesMen";
+import ShoesWomen from "./Components/Mall/ShoesWomen";
 import SearchHeader from "./Components/Search/SearchHeader";
 import SanPhamNoiBat from "./Components/Home/SanPhamNoiBat";
+import ProductDetail from "./ProductDetail/ProductDetail";
 const height = Dimensions.get("window");
 export const HomeStack = StackNavigator(
   {
@@ -24,8 +27,11 @@ export const HomeStack = StackNavigator(
     ManHinh_Search: {
       screen: Search
     },
-    ManHinh_SanPhamNoiBat:{
+    ManHinh_SanPhamNoiBat: {
       screen: SanPhamNoiBat
+    },
+    ManHinh_ProductDetail:{
+      screen: ProductDetail
     }
   },
   {
@@ -45,7 +51,7 @@ export const MallStack = StackNavigator(
     ManHinh_SearchHeader: {
       screen: SearchHeader
     },
-    
+
     ManHinh_Search: {
       screen: Search
     }
@@ -96,11 +102,64 @@ export const Tabs = TabNavigator(
     tabBarOptions: {
       style: {
         backgroundColor: "whitesmoke", //background tabBar
-        height : height/15,
-        margin:0
+        height: height / 15,
+        margin: 0
       },
       labelStyle: {
-        margin:0
+        margin: 0
+      },
+      activeTintColor: "#F23F1F", //màu chữ khi được click
+      inactiveTintColor: "#818085", //màu chữ khi không được click
+      showIcon: true,
+      upperCaseLabel: false
+    }
+  }
+);
+export const MallStack_ShoesMen = StackNavigator(
+  {
+    ManHinh_ShoesMen: {
+      screen: ShoesMen
+    }
+  },
+  {
+    headerMode: "SearchHeader"
+  }
+);
+export const MallStack_ShoesWomen = StackNavigator(
+  {
+    ManHinh_ShoesWomen: {
+      screen: MallStack_ShoesMen
+    }
+  },
+  {
+    headerMode: "SearchHeader"
+  }
+);
+export const TabsMall = TabNavigator(
+  {
+    ShoesMen: {
+      screen: ShoesMen,
+      navigationOptions: {
+        tabBarLabel: "Giày nam"
+      }
+    },
+    ShoesWomen: {
+      screen: MallStack_ShoesWomen,
+      navigationOptions: {
+        tabBarLabel: "Giày nữ"
+      }
+    }
+  },
+  {
+    swipeEnables: true, // có thể kéo giữa các màn hình không cần bấm nút
+    tabBarOptions: {
+      style: {
+        backgroundColor: "whitesmoke", //background tabBar
+        height: height / 15,
+        margin: 0
+      },
+      labelStyle: {
+        margin: 0
       },
       activeTintColor: "#F23F1F", //màu chữ khi được click
       inactiveTintColor: "#818085", //màu chữ khi không được click

@@ -45,7 +45,9 @@ export default class SanPhamNoiBat extends Component {
               {
                 rowHasChanged: (r1, r2) => r1 !== r2
               }
-            ).cloneWithRows(topProducts)} renderRow={product => <TouchableOpacity style={styles.productContainer} onPress={console.log("asasas")}>
+            ).cloneWithRows(topProducts)} renderRow={product => <TouchableOpacity style={styles.productContainer} onPress={() => {
+                  this.props.goToProductDetail();
+                }}>
                 <Image source={{ uri: `${url}${product.images[0]}` }} style={styles.productImage} />
                 <Text style={styles.produceName}>
                   {product.name.toUpperCase()}
@@ -60,7 +62,16 @@ export default class SanPhamNoiBat extends Component {
           <TouchableOpacity onPress={() => {
               this.props.goToMall();
             }}>
-            <Text style={{color: "#FF5722", textAlign: "center", fontSize: 20, fontFamily: "Avenir"}} >Xem thêm</Text>
+            <Text
+              style={{
+                color: "#FF5722",
+                textAlign: "center",
+                fontSize: 20,
+                fontFamily: "Avenir"
+              }}
+            >
+              Xem thêm
+            </Text>
           </TouchableOpacity>
         </View>
       </View>;
