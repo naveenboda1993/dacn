@@ -81,6 +81,12 @@ export const MallStack = StackNavigator(
 
     ManHinh_Search: {
       screen: Search
+    },
+    ManHinh_ShoesMen: {
+      screen: ShoesMen
+    },
+    ManHinh_ShoesWomen: {
+      screen: ShoesMen
     }
   },
   {
@@ -137,6 +143,7 @@ export const Tabs = TabNavigator(
       }
     }
   },
+
   {
     tabBarPosition: "bottom", // đưa tabBar xuống dưới, mặc định nó ở trên (android), ở dưới (ios)
     swipeEnables: true, // có thể kéo giữa các màn hình không cần bấm nút
@@ -156,26 +163,26 @@ export const Tabs = TabNavigator(
     }
   }
 );
-export const MallStack_ShoesMen = StackNavigator(
-  {
-    ManHinh_ShoesMen: {
-      screen: ShoesMen
-    }
-  },
-  {
-    headerMode: "SearchHeader"
-  }
-);
-export const MallStack_ShoesWomen = StackNavigator(
-  {
-    ManHinh_ShoesWomen: {
-      screen: MallStack_ShoesMen
-    }
-  },
-  {
-    headerMode: "SearchHeader"
-  }
-);
+// export const MallStack_ShoesMen = StackNavigator(
+//   {
+//     ManHinh_ShoesMen: {
+//       screen: ShoesMen
+//     }
+//   },
+//   {
+//     headerMode: "SearchHeader"
+//   }
+// );
+// export const MallStack_ShoesWomen = StackNavigator(
+//   {
+//     ManHinh_ShoesWomen: {
+//       screen: MallStack_ShoesMen
+//     }
+//   },
+//   {
+//     headerMode: "SearchHeader"
+//   }
+// );
 export const TabsMall = TabNavigator(
   {
     ShoesMen: {
@@ -185,7 +192,7 @@ export const TabsMall = TabNavigator(
       }
     },
     ShoesWomen: {
-      screen: MallStack_ShoesWomen,
+      screen: ShoesWomen,
       navigationOptions: {
         tabBarLabel: "Giày nữ"
       }

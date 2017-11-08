@@ -10,7 +10,8 @@ import {
   StatusBar,
   TouchableOpacity,
   ListView,
-  Button
+  Button,
+  FlatList
 } from "react-native";
 import Swiper from "react-native-swiper";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
@@ -23,14 +24,27 @@ var W = Dimensions.get("window").width;
 export default class SanPhamNoiBat extends Component {
   constructor(props) {
     super(props);
-    this.state = {topProducts: [] };
+    this.state = { topProducts: [] };
   }
   componentDidMount() {
     sanphamnoibat().then(resJSON => {
       console.log(resJSON);
       const { product } = resJSON;
-      this.setState({topProducts: product });
+      this.setState({ topProducts: product });
     });
+  }
+  _spnoibat(product){
+    return(
+    <View style={styles.body}>
+      <TouchableOpacity style={styles.productContainer} onPress={() => {
+          this.props.goToProductDetail(product);
+        }}>
+        <Image source={{ uri: `${url}${product.images[0]}` }} style={styles.productImage} />
+        <Text style={styles.produceName}>{product.name.toUpperCase()}</Text>
+        <Text style={styles.producePrice}>{product.price}$</Text>
+      </TouchableOpacity>
+    </View>
+    );
   }
   render() {
     const { topProducts } = this.state;
@@ -41,35 +55,19 @@ export default class SanPhamNoiBat extends Component {
             <Text style={styles.title}>Sản phẩm nổi bật</Text>
           </View>
 
-          <ListView contentContainerStyle={styles.body} enableEmptySections dataSource={new ListView.DataSource(
-              {
-                rowHasChanged: (r1, r2) => r1 !== r2
-              }
-            ).cloneWithRows(topProducts)} renderRow={product => <TouchableOpacity style={styles.productContainer} onPress={() => {
-                  this.props.goToProductDetail();
-                }}>
-                <Image source={{ uri: `${url}${product.images[0]}` }} style={styles.productImage} />
-                <Text style={styles.produceName}>
-                  {product.name.toUpperCase()}
-                </Text>
-                <Text style={styles.producePrice}>{product.price}$</Text>
-              </TouchableOpacity>} renderSeparator={(sectionId, rowId) => {
-              if (rowId % 2 === 1) return <View style={{ width, height: 10 }} />;
-              return null;
-            }} />
+          <FlatList data={this.state.topProducts} 
+            numColumns={2}
+            keyExtractor={item=>item.id} 
+            renderItem={({item})=>this._spnoibat(item)} 
+            
+          />
+
         </View>
         <View style={{ borderColor: "#FF5722", margin: 5 }}>
           <TouchableOpacity onPress={() => {
               this.props.goToMall();
             }}>
-            <Text
-              style={{
-                color: "#FF5722",
-                textAlign: "center",
-                fontSize: 20,
-                fontFamily: "Avenir"
-              }}
-            >
+            <Text style={{ color: "#FF5722", textAlign: "center", fontSize: 20, fontFamily: "Avenir" }}>
               Xem thêm
             </Text>
           </TouchableOpacity>
@@ -101,14 +99,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     flexWrap: "wrap",
     paddingBottom: 10,
-    backgroundColor: "whitesmoke"
+    marginRight: 5,
+    marginLeft: 5
+    
   },
   productContainer: {
     width: produtWidth,
     shadowColor: "#2E272B",
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2,
-    backgroundColor:"#fff"
+    backgroundColor: "#fff"
   },
   productImage: {
     width: produtWidth,
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     paddingLeft: 10,
     fontFamily: "Avenir",
-    color: "#A7A7A7",
+    color: "#A7A7A7"
   },
   producePrice: {
     marginBottom: 5,

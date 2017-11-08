@@ -40,8 +40,8 @@ export default class Home extends Component {
         </View>
 
         <ThuongHieu />
-        <SanPhamNoiBat goToProductDetail={() => {
-            this.props.navigation.navigate("ManHinh_ProductDetail");
+        <SanPhamNoiBat goToProductDetail={(product) => {
+            this.props.navigation.navigate("ManHinh_ProductDetail",{product});
           }} goToMall={() => {
             this.props.navigation.navigate("ManHinh_Mall");
           }} />

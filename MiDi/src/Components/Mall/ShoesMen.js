@@ -5,7 +5,7 @@ import Swiper from "react-native-swiper";
 const screen = Dimensions.get("window");
 export default class ShoesMen extends Component {
   render() {
-    return <View>
+    return <View style={{flex: 1}}>
         <Text>
             Men
         </Text>

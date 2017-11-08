@@ -16,9 +16,20 @@ const cart = require("../../media/cart.png");
 const url = "http://192.168.56.1:8080/api/images/product/";
 
 export default class ProductDetail extends Component {
+  constructor(props){
+    super(props);
+    this.state = ({
+      product: []
+    })
+  }
   addThisProductToCart() {
     const { product } = this.props;
     global.addProductToCart(product);
+  }
+  componentWillMount() {
+    this.setState({
+      product : this.props.navigation.state.params.product
+    })
   }
   render() {
     const {
@@ -40,13 +51,23 @@ export default class ProductDetail extends Component {
       txtMaterial,
       txtColor
     } = styles;
-    const { name, price, color, material, description, images } = this.props.navigation.state.params.product;
-    return <View style={wrapper}>
+    const {
+      name,
+      price,
+      color,
+      material,
+      description,
+      images
+    } = this.props.navigation.state.params.product;
+    return (
+      <View style={wrapper}>
         <View style={cardStyle}>
           <View style={header}>
-            <TouchableOpacity onPress={() => {
+            <TouchableOpacity
+              onPress={() => {
                 this.props.navigation.goBack();
-              }}>
+              }}
+            >
               <Image style={backStyle} source={back} />
             </TouchableOpacity>
             <TouchableOpacity onPress={this.addThisProductToCart.bind(this)}>
@@ -54,9 +75,22 @@ export default class ProductDetail extends Component {
             </TouchableOpacity>
           </View>
           <View style={imageContainer}>
-            <ScrollView style={{ flexDirection: "row", padding: 10, height: swiperHeight }} horizontal>
-              <Image source={{ uri: `${url}${images[0]}` }} style={productImageStyle} />
-              <Image source={{ uri: `${url}${images[1]}` }} style={productImageStyle} />
+            <ScrollView
+              style={{
+                flexDirection: "row",
+                padding: 10,
+                height: swiperHeight
+              }}
+              horizontal
+            >
+              <Image
+                source={{ uri: `${url}${images[0]}` }}
+                style={productImageStyle}
+              />
+              <Image
+                source={{ uri: `${url}${images[1]}` }}
+                style={productImageStyle}
+              />
             </ScrollView>
           </View>
           <View style={footer}>
@@ -69,17 +103,34 @@ export default class ProductDetail extends Component {
             </View>
             <View style={descContainer}>
               <Text style={descStyle}>{description}</Text>
-              <View style={{ flexDirection: "row", justifyContent: "space-between", paddingTop: 15 }}>
+              <View
+                style={{
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  paddingTop: 15
+                }}
+              >
                 <Text style={txtMaterial}>Material {material}</Text>
                 <View style={{ flexDirection: "row" }}>
                   <Text style={txtColor}>Color {color}</Text>
-                  <View style={{ height: 15, width: 15, backgroundColor: color.toLowerCase(), borderRadius: 15, marginLeft: 10, borderWidth: 1, borderColor: "#C21C70" }} />
+                  <View
+                    style={{
+                      height: 15,
+                      width: 15,
+                      backgroundColor: color.toLowerCase(),
+                      borderRadius: 15,
+                      marginLeft: 10,
+                      borderWidth: 1,
+                      borderColor: "#FF5722"
+                    }}
+                  />
                 </View>
               </View>
             </View>
           </View>
         </View>
-      </View>;
+      </View>
+    );
   }
 }
 
@@ -175,13 +226,13 @@ const styles = StyleSheet.create({
     paddingLeft: 20
   },
   txtColor: {
-    color: "#C21C70",
+    color: "#FF5722",
     fontSize: 15,
     fontWeight: "400",
     fontFamily: "Avenir"
   },
   txtMaterial: {
-    color: "#C21C70",
+    color: "#FF5722",
     fontSize: 15,
     fontWeight: "400",
     fontFamily: "Avenir"

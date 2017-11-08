@@ -6,7 +6,7 @@ const screen = Dimensions.get("window");
 export default class ShoesWomen extends Component {
   render() {
     return (
-      <View>
+      <View style={{flex: 1, backgroundColor:"green"}}>
         <Text>WWomen</Text>
       </View>
     );
