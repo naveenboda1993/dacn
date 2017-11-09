@@ -11,7 +11,6 @@ import {
 import signIn from "../../API/signIn";
 import global from "../../Global";
 import saveToken from "../../API/saveToken";
-// import { Tab,Tabbar } from '../route'
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -35,21 +34,12 @@ export default class SignIn extends Component {
       });
   }
 
-  redirect() {
-    this.props.navigation.navigate("User");
-  }
-
   Succes() {
-    Alert.alert(
-      "Notice",
-      "Đăng nhập thành công",
-      [{ text: "OK", onPress: () => this.redirect() }],
-      { cancelable: false }
-    );
+        this.props.navigation.navigate("ManHinh_User");
   }
 
   Fail(notification) {
-    Alert.alert("Notice", notification, [{ text: "OK" }], {
+    Alert.alert("Thông báo", notification, [{ text: "OK" }], {
       cancelable: false
     });
   }

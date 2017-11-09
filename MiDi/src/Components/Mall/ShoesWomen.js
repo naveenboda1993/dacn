@@ -6,9 +6,11 @@ const screen = Dimensions.get("window");
 export default class ShoesWomen extends Component {
   render() {
     return (
-      <View style={{flex: 1, backgroundColor:"green"}}>
-        <Text>WWomen</Text>
-      </View>
+      <View style={{flex: 1, backgroundColor:"white",  justifyContent: "center", alignItems: "center"}}>
+        <Text style={{fontSize: 100, color: "red", textAlign: "center", justifyContent: "center", alignItems: "center"}}>
+            Đồ ngốc
+        </Text>
+    </View>
     );
   }
 }

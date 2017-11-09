@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   View,
   Text,
@@ -7,165 +7,193 @@ import {
   StyleSheet,
   TouchableOpacity,
   ImageBackground
-} from 'react-native';
+} from "react-native";
 
-const { width, height} = Dimensions.get('window')
-import global from '../../Global';
-import getToken from '../../API/getToken';
-import checkLogin from '../../API/checkLogin';
-import saveToken from '../../API/saveToken';
+const { width, height } = Dimensions.get("window");
+import global from "../../Global";
+import getToken from "../../API/getToken";
+import checkLogin from "../../API/checkLogin";
+import saveToken from "../../API/saveToken";
 
 class User extends Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-        user: null,
-      };
-      global.onSignIn = this.onSignIn.bind(this);
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: null
+    };
+    global.onSignIn = this.onSignIn.bind(this);
+  }
 
-    componentDidMount() {
-          getToken()
-          .then(token => checkLogin(token))
-          .then(res => global.onSignIn(res.user))
-          .catch(err => console.log('LOI CHECK LOGIN', err));
-    }
+  componentDidMount() {
+    getToken()
+      .then(token => checkLogin(token))
+      .then(res => global.onSignIn(res.user))
+      .catch(err => console.log("LOI CHECK LOGIN", err));
+  }
 
-    onSignIn(user) {
-        this.setState({ user });
-    }
+  onSignIn(user) {
+    this.setState({ user });
+  }
 
-    goto() {
-      const {navigate} =this.props.navigation;
-      navigate('SignIn');
-    }
-    gotoo() {
-      const {navigate} =this.props.navigation;
-      navigate('SignUp');
-    }
-    goShop(){
-      this.props.navigation.navigate('Contact');
-    }
-    out(){
-      this.setState({ user: null });
-      saveToken('');
-      this.props.navigation.navigate('Home');
-    }
-    goOrderHistory(){
-      this.props.navigation.navigate('OrderHistory');
-    }
-    goUserDetail(){
-      const {user} = this.state;
-      this.props.navigation.navigate('UserDetail',{user})
-    }
+  goToSignIn() {
+    const { navigate } = this.props.navigation;
+    navigate("SignIn");
+  }
+  goToSinUp() {
+    const { navigate } = this.props.navigation;
+    navigate("SignUp");
+  }
+  goContact() {
+    this.props.navigation.navigate("Contact");
+  }
+  signOut() {
+    this.setState({ user: null });
+    saveToken("");
+    this.props.navigation.navigate("Home");
+  }
+  goOrderHistory() {
+    this.props.navigation.navigate("OrderHistory");
+  }
+  goUserDetail() {
+    const { user } = this.state;
+    this.props.navigation.navigate("UserDetail", { user });
+  }
 
-    render() {
-      const { user } = this.state;
-      const logoutJSX = <View>
-          <View>
-            <ImageBackground source={require("../../media/32.jpg")} style={styles.imwrap} resizeMode="cover">
-              <View style={styles.user}>
-                <Image source={require("../../media/Contacts-104.png")} style={styles.ava} />
-                <TouchableOpacity style={styles.button} onPress={() => {
-                    this.props.navigation.navigate("ManHinh_SignIn");
-                  }}>
-                  <Text style={styles.text}>Đăng nhập</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.buttonn} onPress={() => {
-                    this.props.navigation.navigate("ManHinh_SignUp");
-                  }}>
-                  <Text style={styles.text}>Đăng ký</Text>
-                </TouchableOpacity>
-              </View>
-            </ImageBackground>
-          </View>
-          <View style={{ marginTop: 20 }}>
-            <TouchableOpacity style={styles.touch}>
-              <Text style={{ fontFamily: "Avenir", color: "rgba(231, 76, 60,1.0)", fontSize: 15 }}>
-                Trung tâm trợ giúp
-              </Text>
-              <Image source={require("../../media/next.png")} style={styles.icon} />
-            </TouchableOpacity>
-          </View>
-        </View>;
-
-      const loginJSX = (
+  render() {
+    const { user } = this.state;
+    const logoutJSX = <View>
         <View>
-          <View>
-            <Image
-              source={(require('../../media/32.jpg'))}
-              style={styles.imwrap}
-              resizeMode= 'cover'
-              >
-              <View style={{flex :1.5}}>
-              </View>
-              <View style={styles.user}>
-                <Image
-                  source={ require('../../media/Contacts-104.png') }
-                  style={styles.ava}
-                />
-                <Text style={styles.name}>{user ? user.name : ''}</Text>
-              </View>
-            </Image>
-          </View>
-          <View style={{marginTop:20}}>
-            <TouchableOpacity style={styles.touch} onPress={()=>{this.goUserDetail()}}>
-              <Text style={{fontFamily: 'Avenir',color:'rgba(231, 76, 60,1.0)',fontSize:15}}>Tài khoản của tôi</Text>
-              <Image
-                source ={require('../../media/next.png')}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.touch} onPress={()=>{this.goOrderHistory()}}>
-              <Text style={{fontFamily: 'Avenir',color:'rgba(231, 76, 60,1.0)',fontSize:15}}>Lịch sử mua hàng</Text>
-              <Image
-                source ={require('../../media/next.png')}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.touch} onPress={()=>{this.goShop()}}>
-              <Text style={{fontFamily: 'Avenir',color:'rgba(231, 76, 60,1.0)',fontSize:15}}>Thông tin shop</Text>
-              <Image
-                source ={require('../../media/next.png')}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-          </View>
-          <View style={{marginTop:50}}>
-            <TouchableOpacity style={styles.touch}>
-              <Text style={{fontFamily: 'Avenir',color:'rgba(231, 76, 60,1.0)',fontSize:15}}>Trung tâm trợ giúp</Text>
-              <Image
-                source ={require('../../media/next.png')}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.touch} onPress={()=>{this.out()}}>
-              <Text style={{fontFamily: 'Avenir',color:'rgba(231, 76, 60,1.0)',fontSize:15}}>Đăng xuất</Text>
-              <Image
-                source ={require('../../media/cancel.png')}
-                style={styles.icon}
-              />
-            </TouchableOpacity>
-          </View>
+          <ImageBackground source={require("../../media/32.jpg")} style={styles.imwrap} resizeMode="cover">
+            <View style={styles.user}>
+              <Image source={require("../../media/Contacts-104.png")} style={styles.ava} />
+              <TouchableOpacity style={styles.button} onPress={() => {
+                  this.props.navigation.navigate("ManHinh_SignIn");
+                }}>
+                <Text style={styles.text}>Đăng nhập</Text>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.buttonn} onPress={() => {
+                  this.props.navigation.navigate("ManHinh_SignUp");
+                }}>
+                <Text style={styles.text}>Đăng ký</Text>
+              </TouchableOpacity>
+            </View>
+          </ImageBackground>
         </View>
-      );
+        <View style={{ marginTop: 20 }}>
+          <TouchableOpacity style={styles.touch}>
+            <Text style={{ fontFamily: "Avenir", color: "rgba(231, 76, 60,1.0)", fontSize: 15 }}>
+              Trung tâm trợ giúp
+            </Text>
+            <Image source={require("../../media/next.png")} style={styles.icon} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.touch} onPress={() => {
+              this.goContact();
+            }}>
+            <Text style={{ fontFamily: "Avenir", color: "rgba(231, 76, 60,1.0)", fontSize: 15 }}>
+              Thông tin shop
+            </Text>
+            <Image source={require("../../media/next.png")} style={styles.icon} />
+          </TouchableOpacity>
+        </View>
+      </View>;
 
-      const mainJSX = this.state.user ? loginJSX : logoutJSX;
-      return (
-        <View>{mainJSX}</View>
-      );
-    }
+    const loginJSX = <View>
+        <View>
+          <ImageBackground source={require("../../media/32.jpg")} style={styles.imwrap} resizeMode="cover">
+            <View style={styles.user}>
+              <Image source={require("../../media/Contacts-104.png")} style={styles.ava} />
+              <Text style={styles.name}>{user ? user.name : ""}</Text>
+            </View>
+          </ImageBackground>
+        </View>
+        <View style={{ marginTop: 20 }}>
+          <TouchableOpacity style={styles.touch} onPress={() => {
+              this.goUserDetail();
+            }}>
+            <Text
+              style={{
+                fontFamily: "Avenir",
+                color: "rgba(231, 76, 60,1.0)",
+                fontSize: 15
+              }}
+            >
+              Tài khoản của tôi
+            </Text>
+            <Image source={require("../../media/next.png")} style={styles.icon} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.touch} onPress={() => {
+              this.goOrderHistory();
+            }}>
+            <Text
+              style={{
+                fontFamily: "Avenir",
+                color: "rgba(231, 76, 60,1.0)",
+                fontSize: 15
+              }}
+            >
+              Lịch sử mua hàng
+            </Text>
+            <Image source={require("../../media/next.png")} style={styles.icon} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.touch} onPress={() => {
+              this.signOut();
+            }}>
+            <Text
+              style={{
+                fontFamily: "Avenir",
+                color: "rgba(231, 76, 60,1.0)",
+                fontSize: 15
+              }}
+            >
+              Đăng xuất
+            </Text>
+            <Image source={require("../../media/cancel.png")} style={styles.icon} />
+          </TouchableOpacity>
+        </View>
+        <View style={{ marginTop: 50 }}>
+          <TouchableOpacity style={styles.touch}>
+            <Text
+              style={{
+                fontFamily: "Avenir",
+                color: "rgba(231, 76, 60,1.0)",
+                fontSize: 15
+              }}
+            >
+              Trung tâm trợ giúp
+            </Text>
+            <Image source={require("../../media/next.png")} style={styles.icon} />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.touch} onPress={() => {
+              this.goContact();
+            }}>
+            <Text
+              style={{
+                fontFamily: "Avenir",
+                color: "rgba(231, 76, 60,1.0)",
+                fontSize: 15
+              }}
+            >
+              Thông tin shop
+            </Text>
+            <Image source={require("../../media/next.png")} style={styles.icon} />
+          </TouchableOpacity>
+        </View>
+      </View>;
+
+    const mainJSX = this.state.user ? loginJSX : logoutJSX;
+    return <View>{mainJSX}</View>;
+  }
 }
 
 const styles = StyleSheet.create({
   name: {
     fontSize: 15,
     marginLeft: 20,
-    color: 'white',
-    fontFamily: 'Avenir'
+    color: "white",
+    fontFamily: "Avenir"
   },
   imwrap: {
-    height : height/4,
+    height: height / 4,
     width: width
   },
   button: {
@@ -174,61 +202,61 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     width: 70,
     marginLeft: 20,
-    justifyContent: 'center',
+    justifyContent: "center",
     paddingLeft: 1,
-    alignItems: 'center',
-    borderColor: 'black',
+    alignItems: "center",
+    borderColor: "black"
     // marginTop: 20,
   },
   buttonn: {
     height: 25,
-    backgroundColor: 'transparent',
+    backgroundColor: "transparent",
     borderRadius: 5,
     width: 70,
     // marginTop: 40,
     marginLeft: 10,
-    justifyContent: 'center',
+    justifyContent: "center",
     paddingLeft: 1,
-    alignItems: 'center',
+    alignItems: "center",
     borderWidth: 1,
-    borderColor: 'white'
+    borderColor: "white"
   },
   text: {
-    fontSize:12,
-    color: 'white',
-    fontFamily: 'Avenir'
+    fontSize: 12,
+    color: "white",
+    fontFamily: "Avenir"
   },
   user: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex:3,
+    flexDirection: "row",
+    alignItems: "center",
+    flex: 3,
     marginLeft: 40
   },
   ava: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     width: 60,
     height: 60,
-    marginLeft : 20,
-    borderRadius:60
+    marginLeft: 20,
+    borderRadius: 60
   },
   icons: {
-    marginTop : 20,
+    marginTop: 20,
     width: 30,
     height: 30,
     marginRight: 5
   },
   touch: {
-    marginTop:1,
-    backgroundColor: 'white',
-    padding:height/50,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
+    marginTop: 1,
+    backgroundColor: "white",
+    padding: height / 50,
+    flexDirection: "row",
+    justifyContent: "space-between"
   },
   icon: {
-    width:20,
-    height:20,
+    width: 20,
+    height: 20
   }
-})
+});
 
 export default User;

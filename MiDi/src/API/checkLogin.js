@@ -1,5 +1,5 @@
 const checkLogin = (token) => (
-    fetch('http://localhost:8080/midishop/checkToken.php',
+    fetch('http://192.168.56.1:8080/api/check_login.php',
     {
         method: 'POST',
         headers: {
