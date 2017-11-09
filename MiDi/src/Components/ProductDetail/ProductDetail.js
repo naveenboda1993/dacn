@@ -16,21 +16,21 @@ const cart = require("../../media/cart.png");
 const url = "http://192.168.56.1:8080/api/images/product/";
 
 export default class ProductDetail extends Component {
-  constructor(props){
-    super(props);
-    this.state = ({
-      product: []
-    })
-  }
+  // constructor(props){
+  //   super(props);
+  //   this.state = ({
+  //     product: []
+  //   })
+  // }
   addThisProductToCart() {
     const { product } = this.props;
     global.addProductToCart(product);
   }
-  componentWillMount() {
-    this.setState({
-      product : this.props.navigation.state.params.product
-    })
-  }
+  // componentWillMount() {
+  //   this.setState({
+  //     product : this.props.navigation.state.params.product
+  //   })
+  // }
   render() {
     const {
       wrapper,
@@ -110,7 +110,7 @@ export default class ProductDetail extends Component {
                   paddingTop: 15
                 }}
               >
-                <Text style={txtMaterial}>Material {material}</Text>
+                <Text style={txtMaterial}>Material: {material}</Text>
                 <View style={{ flexDirection: "row" }}>
                   <Text style={txtColor}>Color {color}</Text>
                   <View

@@ -19,7 +19,7 @@ export default class SearchHeader extends Component {
         <TouchableOpacity onPress={() => {
             this.props.goToSearch();
           }}>
-          <View style={{ flexDirection: "row", width: 280, backgroundColor: "#F0F0F0", margin: 8, borderRadius: 3, paddingRight: 10 }}>
+          <View style={{ flexDirection: "row", width: 300, backgroundColor: "#F0F0F0", margin: 8, borderRadius: 3, paddingRight: 10 }}>
             <EvilIcons name="search" size={22} />
             <Text style={{ color: "#F23F1F", paddingLeft: 5, fontSize: 16, fontFamily: "Avenir" }}>
               Snackers

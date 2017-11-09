@@ -1,24 +1,92 @@
 import React, { Component } from "react";
-import { View, Text, ScrollView, Dimensions, Image } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 
 import SearchHeader from "../Search/SearchHeader";
-import ThuongHieu from "../Home/ThuongHieu";
-import SanPhamNoiBat from "../Home/SanPhamNoiBat";
-import {TabsMall} from "../../Route"
-var H = Dimensions.get("window").height;
-var W = Dimensions.get("window").width;
-export default class Mall extends Component {
+import SignIn from "./ShoesMen";
+import SignUp from "./ShoesWomen";
+
+export default class Authentication extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { choose: true };
+  }
+
+  signIn() {
+    this.setState({ choose: true });
+  }
+
+  signUp() {
+    this.setState({ choose: false });
+  }
+
   render() {
+    const {
+      container,
+      controlStyle,
+      shoesMenStyle,
+      shoesWomenStyle,
+      activeStyle,
+      inactiveStyle
+    } = styles;
+
+    const { choose } = this.state;
+    const mainJSX = choose ? <SignIn /> : <SignUp />;
     return (
-      <View style={{flex:1}}>
+      <View style={container}>
         <SearchHeader
           goToSearch={() => {
             this.props.navigation.navigate("ManHinh_Search");
           }}
-          
         />
-<TabsMall/>
+        <View style={controlStyle}>
+          <TouchableOpacity
+            style={shoesMenStyle}
+            onPress={this.signIn.bind(this)}
+          >
+            <Text style={choose ? activeStyle : inactiveStyle}>Giày nam</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={shoesWomenStyle}
+            onPress={this.signUp.bind(this)}
+          >
+            <Text style={!choose ? activeStyle : inactiveStyle}>Giày nữ</Text>
+          </TouchableOpacity>
+        </View>
+        {mainJSX}
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    justifyContent: "space-between",
+  },
+  controlStyle: {
+    flexDirection: "row",
+    alignSelf: "stretch",
+    backgroundColor: "#F23F1F"
+  },
+  inactiveStyle: {
+    color: "#D7D7D7"
+  },
+  activeStyle: {
+    color: "#F23F1F"
+  },
+  shoesMenStyle: {
+    backgroundColor: "#fff",
+    alignItems: "center",
+    paddingVertical: 15,
+    flex: 1,
+    marginRight: 1
+  },
+  shoesWomenStyle: {
+    backgroundColor: "#fff",
+    paddingVertical: 15,
+    alignItems: "center",
+    flex: 1,
+    marginLeft: 1
+  }
+});

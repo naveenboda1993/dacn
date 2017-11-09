@@ -16,38 +16,44 @@ export default class SignUp extends Component {
     this.state = {
       name: "",
       email: "",
-      password: ""
+      password: "",
+      address: "",
+      phone: ""
     };
   }
 
   Success() {
     Alert.alert(
-      "Notice",
+      "Thông báo",
       "Đăng ký thành công",
-      [{ text: "OK", onPress: () => this.gotoSignIn() }],
+      [
+        {
+          text: "OK",
+          onPress: () => this.props.navigation.navigate("ManHinh_SignIn")
+        }
+      ],
       { cancelable: false }
     );
   }
 
   Fail(notification) {
     Alert.alert(
-      "Notice",
+      "Thông báo",
       notification,
       [{ text: "OK", onPress: () => this.removeEmail() }],
       { cancelable: false }
     );
   }
 
-
   removeEmail() {
     this.setState({ email: "" });
   }
 
   registerUser() {
-    const { name, email, password } = this.state;
-    register(email, name, password).then(res => {
+    const { name, email, password, address, phone } = this.state;
+    register(email, name, password, address, phone).then(res => {
       if (res === "THANH_CONG") return this.Success();
-      else if (res === "THAT_BAI_ROI") return this.Fail("Không được để trống");
+      else if (res === "KHONG_THANH_CONG") return this.Fail("Không được để trống");
       this.Fail("Email đã được sử dụng");
     });
   }
@@ -55,18 +61,18 @@ export default class SignUp extends Component {
   render() {
     const { inputStyle, bigButton, buttonText } = styles;
     return (
-      <View style={{ flex: 1, backgroundColor: "whitesmoke" }}>
+      <View style={{ flex: 1, backgroundColor: "#fff" }}>
         <View
           style={{
             alignSelf: "center",
             alignItems: "center",
             flex: 1,
             justifyContent: "center",
-            height: 70,
-            width: 70
+            height: 30,
+            width: 30
           }}
         >
-          <Image source={require("../../media/md.png")} />
+          <Image source={require("../../media/mdr.png")} />
         </View>
         <View style={{ flex: 1 }}>
           <TextInput
@@ -91,6 +97,20 @@ export default class SignUp extends Component {
             secureTextEntry
             onChangeText={text => this.setState({ password: text })}
           />
+          <TextInput
+            underlineColorAndroid="transparent"
+            style={inputStyle}
+            placeholder="Địa chỉ"
+            value={this.state.address}
+            onChangeText={text => this.setState({ address: text })}
+          />
+          <TextInput
+            underlineColorAndroid="transparent"
+            style={inputStyle}
+            placeholder="Điện thoại"
+            value={this.state.phone}
+            onChangeText={text => this.setState({ phone: text })}
+          />
           <TouchableOpacity
             style={bigButton}
             onPress={this.registerUser.bind(this)}
@@ -98,10 +118,12 @@ export default class SignUp extends Component {
             <Text style={buttonText}>ĐĂNG KÝ</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ flex: 1, alignItems: "center" }} />
+        <View style={{ flex: 1 }}/>
+        <View style={{ flex: 1 }}/>
+        <View style={{ flex: 1}}/>
         <View style={{ flex: 1, alignItems: "center" }}>
           <Text style={{ fontFamily: "Avenir", color: "black" }}>
-            ----------  Đã có tài khoản?  -----------
+            ---------- Đã có tài khoản? -----------
           </Text>
           <TouchableOpacity
             onPress={() => {

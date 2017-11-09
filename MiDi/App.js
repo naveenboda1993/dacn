@@ -5,8 +5,7 @@
  */
 
 import React, { Component } from "react";
-import { Tabs, HomeStack, MallStack } from "./src/Route";
-
+import { Tabs, HomeStack } from "./src/Route";
 export default class App extends Component {
   render() {
     return <Tabs />;

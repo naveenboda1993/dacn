@@ -10,14 +10,15 @@ import Home from "./Components/Home/Home";
 import User from "./Components/User/User";
 import Mall from "./Components/Mall/Mall";
 import Search from "./Components/Search/Search";
-import ShoesMen from "./Components/Mall/ShoesMen";
-import ShoesWomen from "./Components/Mall/ShoesWomen";
+// import ShoesMen from "./Components/Mall/ShoesMen";
+// import ShoesWomen from "./Components/Mall/ShoesWomen";
 import SearchHeader from "./Components/Search/SearchHeader";
 import SanPhamNoiBat from "./Components/Home/SanPhamNoiBat";
 import ProductDetail from "./Components/ProductDetail/ProductDetail";
 import Cart from "./Components/Cart/Cart";
 import SignIn from "./Components/User/SignIn";
 import SignUp from "./Components/User/SignUp";
+
 const height = Dimensions.get("window");
 
 export const CartStack = StackNavigator(
@@ -82,12 +83,6 @@ export const MallStack = StackNavigator(
     ManHinh_Search: {
       screen: Search
     },
-    ManHinh_ShoesMen: {
-      screen: ShoesMen
-    },
-    ManHinh_ShoesWomen: {
-      screen: ShoesMen
-    }
   },
   {
     headerMode: "SearchHeader"
@@ -146,59 +141,6 @@ export const Tabs = TabNavigator(
 
   {
     tabBarPosition: "bottom", // đưa tabBar xuống dưới, mặc định nó ở trên (android), ở dưới (ios)
-    swipeEnables: true, // có thể kéo giữa các màn hình không cần bấm nút
-    tabBarOptions: {
-      style: {
-        backgroundColor: "whitesmoke", //background tabBar
-        height: height / 15,
-        margin: 0
-      },
-      labelStyle: {
-        margin: 0
-      },
-      activeTintColor: "#F23F1F", //màu chữ khi được click
-      inactiveTintColor: "#818085", //màu chữ khi không được click
-      showIcon: true,
-      upperCaseLabel: false
-    }
-  }
-);
-// export const MallStack_ShoesMen = StackNavigator(
-//   {
-//     ManHinh_ShoesMen: {
-//       screen: ShoesMen
-//     }
-//   },
-//   {
-//     headerMode: "SearchHeader"
-//   }
-// );
-// export const MallStack_ShoesWomen = StackNavigator(
-//   {
-//     ManHinh_ShoesWomen: {
-//       screen: MallStack_ShoesMen
-//     }
-//   },
-//   {
-//     headerMode: "SearchHeader"
-//   }
-// );
-export const TabsMall = TabNavigator(
-  {
-    ShoesMen: {
-      screen: ShoesMen,
-      navigationOptions: {
-        tabBarLabel: "Giày nam"
-      }
-    },
-    ShoesWomen: {
-      screen: ShoesWomen,
-      navigationOptions: {
-        tabBarLabel: "Giày nữ"
-      }
-    }
-  },
-  {
     swipeEnables: true, // có thể kéo giữa các màn hình không cần bấm nút
     tabBarOptions: {
       style: {

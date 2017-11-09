@@ -58,7 +58,7 @@ export default class SignIn extends Component {
     const { inputStyle, bigButton, buttonText } = styles;
     const { email, password } = this.state;
     return (
-      <View style={{ flex: 1, backgroundColor: "whitesmoke" }}>
+      <View style={{ flex: 1, backgroundColor: "#fff" }}>
         <View
           style={{
             alignSelf: "center",
