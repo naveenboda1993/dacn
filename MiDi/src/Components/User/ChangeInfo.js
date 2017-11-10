@@ -8,6 +8,7 @@ import {
   TextInput,
   Alert
 } from "react-native";
+import backSpecial from "../../media/back.png";
 import getToken from "../../API/getToken";
 import changeInfoApi from "../../API/changeInfo";
 import global from "../../Global";
@@ -28,7 +29,12 @@ export default class ChangeInfo extends Component {
     Alert.alert(
       "Thông báo",
       "Cập nhật thông tin thành công",
-      [{ text: "OK", onPress: this.back.bind(this) }],
+      [
+        {
+          text: "OK",
+          onPress: this.back.bind(this)
+        }
+      ],
       { cancelabel: false }
     );
   }
@@ -42,27 +48,42 @@ export default class ChangeInfo extends Component {
       })
       .catch(err => console.log(err));
   }
+
   render() {
+    const {
+      wrapper,
+      header,
+      headerTitle,
+      backIconStyle,
+      body,
+      signInContainer,
+      signInTextStyle,
+      textInput
+    } = styles;
     const { txtName, txtAddress, txtPhone } = this.state;
     return (
-      <View style={{ flex: 1, backgroundColor: "#fff" }}>
+      <View style={wrapper}>
+        <View style={header}>
+          <View />
+          <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+            <Image source={backSpecial} style={backIconStyle} />
+          </TouchableOpacity>
+          <Text style={headerTitle}>Cập nhật thông tin</Text>
+        </View>
         <View
           style={{
-            alignSelf: "center",
+            marginTop: 50,
             alignItems: "center",
-            flex: 1,
-            justifyContent: "center",
-            height: 70,
-            width: 250
+            justifyContent: "center"
           }}
         >
           <Image source={require("../../media/mdr.png")} />
-          <Text style={{ fontFamily: "Avenir", color: "orange", fontSize: 20, marginTop: 10 }}>Cập nhật thông tin</Text>
         </View>
-        <View style={{ flex: 1 }}>
+
+        <View style={body}>
           <TextInput
-            style={styles.textInput}
-            placeholder="Họ và tên"
+            style={textInput}
+            placeholder="Enter your name"
             autoCapitalize="none"
             value={txtName}
             onChangeText={text =>
@@ -70,17 +91,20 @@ export default class ChangeInfo extends Component {
             underlineColorAndroid="transparent"
           />
           <TextInput
-            style={styles.textInput}
-            placeholder="Địa chỉ"
+            style={textInput}
+            placeholder="Enter your address"
             autoCapitalize="none"
             value={txtAddress}
             onChangeText={text =>
-              this.setState({ ...this.state, txtAddress: text })}
+              this.setState({
+                ...this.state,
+                txtAddress: text
+              })}
             underlineColorAndroid="transparent"
           />
           <TextInput
-            style={styles.textInput}
-            placeholder="Điện thoại"
+            style={textInput}
+            placeholder="Enter your phone number"
             autoCapitalize="none"
             value={txtPhone}
             onChangeText={text =>
@@ -88,44 +112,58 @@ export default class ChangeInfo extends Component {
             underlineColorAndroid="transparent"
           />
           <TouchableOpacity
-            style={styles.signInContainer}
+            style={signInContainer}
             onPress={this.change.bind(this)}
           >
-            <Text style={styles.signInTextStyle}>Cập nhật</Text>
+            <Text style={signInTextStyle}>Thay đổi</Text>
           </TouchableOpacity>
         </View>
-        <View style={{ flex: 1 }} />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  wrapper: { flex: 1, backgroundColor: "#fff" },
+  header: {
+    flex: 1,
+    backgroundColor: "#F23F1F",
+    alignItems: "center",
+    //justifyContent: "space-between",
+    flexDirection: "row",
+    paddingHorizontal: 10
+  }, // eslint-disable-line
+  headerTitle: { fontFamily: "Avenir", color: "#fff", fontSize: 20 },
+  backIconStyle: { width: 30, height: 30, marginRight: 60 },
+  body: { flex: 8, backgroundColor: "#fff", justifyContent: "center" },
   textInput: {
-    height: 50,
-    backgroundColor: "#fff",
-    marginBottom: 10,
+    height: 45,
+    marginHorizontal: 20,
+    backgroundColor: "#FFFFFF",
+    fontFamily: "Avenir",
+    paddingLeft: 20,
     borderRadius: 20,
-    paddingLeft: 30,
-    marginRight: 20,
-    marginLeft: 20,
+    marginBottom: 20,
     borderColor: "#F23F1F",
     borderWidth: 1
   },
   signInTextStyle: {
+    color: "#FFF",
     fontFamily: "Avenir",
-    color: "#fff",
-    fontWeight: "400"
+    fontWeight: "600",
+    paddingHorizontal: 20
   },
   signInContainer: {
-    height: 50,
+    marginHorizontal: 20,
+    backgroundColor: "#F23F1F",
     borderRadius: 20,
-    borderWidth: 1,
-    borderColor: "#fff",
+    height: 45,
     alignItems: "center",
     justifyContent: "center",
-    marginRight: 50,
-    marginLeft: 50,
-    backgroundColor: "#F23F1F"
+    alignSelf: "stretch"
+  },
+  signInStyle: {
+    flex: 3,
+    marginTop: 50
   }
 });

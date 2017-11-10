@@ -98,7 +98,7 @@ class User extends Component {
             <Text
               style={{
                 fontFamily: "Avenir",
-                color: "rgba(231, 76, 60,1.0)",
+                color: "#F23F1F",
                 fontSize: 15
               }}
             >
@@ -118,7 +118,7 @@ class User extends Component {
             <Text
               style={{
                 fontFamily: "Avenir",
-                color: "rgba(231, 76, 60,1.0)",
+                color: "#F23F1F",
                 fontSize: 15
               }}
             >
@@ -160,7 +160,7 @@ class User extends Component {
             <Text
               style={{
                 fontFamily: "Avenir",
-                color: "rgba(231, 76, 60,1.0)",
+                color: "#F23F1F",
                 fontSize: 15
               }}
             >
@@ -180,7 +180,7 @@ class User extends Component {
             <Text
               style={{
                 fontFamily: "Avenir",
-                color: "rgba(231, 76, 60,1.0)",
+                color: "#F23F1F",
                 fontSize: 15
               }}
             >
@@ -200,7 +200,7 @@ class User extends Component {
             <Text
               style={{
                 fontFamily: "Avenir",
-                color: "rgba(231, 76, 60,1.0)",
+                color: "#F23F1F",
                 fontSize: 15
               }}
             >
@@ -217,7 +217,7 @@ class User extends Component {
             <Text
               style={{
                 fontFamily: "Avenir",
-                color: "rgba(231, 76, 60,1.0)",
+                color: "#F23F1F",
                 fontSize: 15
               }}
             >
@@ -237,7 +237,7 @@ class User extends Component {
             <Text
               style={{
                 fontFamily: "Avenir",
-                color: "rgba(231, 76, 60,1.0)",
+                color: "#F23F1F",
                 fontSize: 15
               }}
             >
