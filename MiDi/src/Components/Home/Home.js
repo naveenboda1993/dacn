@@ -39,7 +39,7 @@ export default class Home extends Component {
           </Swiper>
         </View>
 
-        <ThuongHieu />
+        <ThuongHieu/>
         <SanPhamNoiBat goToProductDetail={(product) => {
             this.props.navigation.navigate("ManHinh_ProductDetail",{product});
           }} goToMall={() => {
@@ -58,29 +58,4 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff"
   },
-
-  slide1: {
-    width: W,
-    height: H * 0.3,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#9DD6EB"
-  },
-  slide2: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#97CAE5"
-  },
-  slide3: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#92BBD9"
-  },
-  text: {
-    color: "#fff",
-    fontSize: 30,
-    fontWeight: "bold"
-  }
 });

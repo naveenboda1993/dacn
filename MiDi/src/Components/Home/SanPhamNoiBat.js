@@ -16,7 +16,7 @@ import {
 import Swiper from "react-native-swiper";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 const url = "http://192.168.56.1:8080/api/images/product/";
-import sanphamnoibat from "../../API/FeaturedProduct";
+import initData from "../../API/initData";
 
 var H = Dimensions.get("window").height;
 var W = Dimensions.get("window").width;
@@ -27,7 +27,7 @@ export default class SanPhamNoiBat extends Component {
     this.state = { topProducts: [] };
   }
   componentDidMount() {
-    sanphamnoibat().then(resJSON => {
+    initData().then(resJSON => {
       console.log(resJSON);
       const { product } = resJSON;
       this.setState({ topProducts: product });
@@ -59,7 +59,6 @@ export default class SanPhamNoiBat extends Component {
             numColumns={2}
             keyExtractor={item=>item.id} 
             renderItem={({item})=>this._spnoibat(item)} 
-            
           />
 
         </View>
@@ -76,8 +75,8 @@ export default class SanPhamNoiBat extends Component {
   }
 }
 const { width } = Dimensions.get("window");
-const produtWidth = (width - 20) / 2;
-const productImageHeight = produtWidth / 361 * 452;
+const productWidth = (width - 20) / 2;
+const productImageHeight = productWidth / 361 * 452;
 
 const styles = StyleSheet.create({
   container: {
@@ -96,7 +95,6 @@ const styles = StyleSheet.create({
   },
   body: {
     flexDirection: "row",
-    justifyContent: "space-around",
     flexWrap: "wrap",
     paddingBottom: 10,
     marginRight: 5,
@@ -104,14 +102,16 @@ const styles = StyleSheet.create({
     
   },
   productContainer: {
-    width: produtWidth,
-    shadowColor: "#2E272B",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.2,
-    backgroundColor: "#fff"
+    width: productWidth,
+    // shadowColor: "#2E272B",
+    // shadowOffset: { width: 0, height: 3 },
+    // shadowOpacity: 0.2,
+    // backgroundColor: "#fff",
+    borderColor: "black",
+    borderWidth: 0.5
   },
   productImage: {
-    width: produtWidth,
+    width: productWidth,
     height: productImageHeight
   },
   produceName: {

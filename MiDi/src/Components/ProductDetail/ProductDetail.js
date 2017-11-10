@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import global from "../../Global";
 
-const back = require("../../media/back.png");
+const back = require("../../media/back_c.png");
 const cart = require("../../media/cart.png");
 
 const url = "http://192.168.56.1:8080/api/images/product/";
