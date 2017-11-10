@@ -18,6 +18,7 @@ import ProductDetail from "./Components/ProductDetail/ProductDetail";
 import Cart from "./Components/Cart/Cart";
 import SignIn from "./Components/User/SignIn";
 import SignUp from "./Components/User/SignUp";
+import ChangeInfo from "./Components/User/ChangeInfo";
 
 const height = Dimensions.get("window");
 
@@ -64,6 +65,9 @@ export const UserStack = StackNavigator(
     },
     ManHinh_SignUp: {
       screen: SignUp
+    },
+    ManHinh_ChangeInfo: {
+      screen: ChangeInfo
     }
   },
   {
