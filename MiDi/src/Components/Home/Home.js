@@ -39,9 +39,13 @@ export default class Home extends Component {
           </Swiper>
         </View>
 
-        <ThuongHieu/>
-        <SanPhamNoiBat goToProductDetail={(product) => {
-            this.props.navigation.navigate("ManHinh_ProductDetail",{product});
+        <ThuongHieu gotoListProduct={category => {
+            this.props.navigation.navigate("ManHinh_ListProduct", {category});
+          }} />
+        <SanPhamNoiBat goToProductDetail={product => {
+            this.props.navigation.navigate("ManHinh_ProductDetail", {
+              product
+            });
           }} goToMall={() => {
             this.props.navigation.navigate("ManHinh_Mall");
           }} />
@@ -57,5 +61,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff"
-  },
+  }
 });

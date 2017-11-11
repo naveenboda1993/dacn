@@ -14,7 +14,9 @@ import Search from "./Components/Search/Search";
 // import ShoesWomen from "./Components/Mall/ShoesWomen";
 import SearchHeader from "./Components/Search/SearchHeader";
 import SanPhamNoiBat from "./Components/Home/SanPhamNoiBat";
-import ProductDetail from "./Components/ProductDetail/ProductDetail";
+import ThuongHieu from "./Components/Home/ThuongHieu";
+import ProductDetail from "./Components/Product/ProductDetail";
+import ListProduct from "./Components/Product/ListProduct";
 import Cart from "./Components/Cart/Cart";
 import SignIn from "./Components/User/SignIn";
 import SignUp from "./Components/User/SignUp";
@@ -49,7 +51,13 @@ export const HomeStack = StackNavigator(
     },
     ManHinh_ProductDetail: {
       screen: ProductDetail
-    }
+    },
+    ManHinh_ThuongHieu:{
+      screen: ThuongHieu
+    },
+    ManHinh_ListProduct: {
+      screen: ListProduct
+    },
   },
   {
     headerMode: "SearchHeader"

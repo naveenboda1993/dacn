@@ -121,7 +121,7 @@ export default class ProductDetail extends Component {
                       borderRadius: 15,
                       marginLeft: 10,
                       borderWidth: 1,
-                      borderColor: "#FF5722"
+                      borderColor: "black"
                     }}
                   />
                 </View>

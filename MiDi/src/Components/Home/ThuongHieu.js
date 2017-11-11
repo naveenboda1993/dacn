@@ -22,7 +22,6 @@ import initData from "../../API/initData";
 
 var H = Dimensions.get("window").height;
 var W = Dimensions.get("window").width;
-
 export default class ThuongHieu extends Component {
   constructor(props) {
     super(props);
@@ -38,51 +37,30 @@ export default class ThuongHieu extends Component {
 
   render() {
     const { types } = this.state;
-    return (
-      <View>
-        <View
-          style={{
-            backgroundColor: "#FF5722",
-            height: H * 0.01,
-            marginBottom: 5
-          }}
-        />
+    return <View>
+        <View style={{ backgroundColor: "#FF5722", height: H * 0.01, marginBottom: 5 }} />
         <View style={{ height: H * 0.18 }}>
-          <Text
-            style={{
-              color: "#FF5722",
-              marginLeft: 8,
-              fontFamily: "Avenir",
-              fontSize: 16
-            }}
-          >
+          <Text style={{ color: "#FF5722", marginLeft: 8, fontFamily: "Avenir", fontSize: 16 }}>
             Thương hiêu ưa chuộng
           </Text>
 
-          <ScrollView
-            horizontal
-            contentContainerStyle={styles.contentContainer}
-            showsHorizontalScrollIndicator={false}
-          >
+          <ScrollView horizontal contentContainerStyle={styles.contentContainer} showsHorizontalScrollIndicator={false}>
             {types.map(e => (
-              <TouchableOpacity key={e.id}>
+              <TouchableOpacity
+              onPress={() => this.props.gotoListProduct(e)}
+                key={e.id}
+              >
                 <Image
-                  source={{ uri: `${url}${e.image}` }}
+                  source={{
+                    uri: `${url}${e.image}`
+                  }}
                   style={styles.imgthuonghieu}
                 />
               </TouchableOpacity>
             ))}
           </ScrollView>
         </View>
-        <View
-          style={{
-            height: H * 0.01,
-            flexDirection: "row",
-            marginLeft: 6,
-            alignItems: "center",
-            marginTop: 3
-          }}
-        >
+        <View style={{ height: H * 0.01, flexDirection: "row", marginLeft: 6, alignItems: "center", marginTop: 3 }}>
           <EvilIcons name="check" size={12} style={{ color: "#ff5722" }} />
           <Text style={{ color: "#FF5722", fontSize: 13, marginRight: 14 }}>
             Miễn phí trả hàng
@@ -92,10 +70,11 @@ export default class ThuongHieu extends Component {
             Chính hãng 100%
           </Text>
           <EvilIcons name="check" size={12} style={{ color: "#ff5722" }} />
-          <Text style={{ color: "#FF5722", fontSize: 13 }}>Giao miễn phí</Text>
+          <Text style={{ color: "#FF5722", fontSize: 13 }}>
+            Giao miễn phí
+          </Text>
         </View>
-      </View>
-    );
+      </View>;
   }
 }
 
