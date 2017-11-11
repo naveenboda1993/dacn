@@ -24,6 +24,17 @@ import ChangeInfo from "./Components/User/ChangeInfo";
 
 const height = Dimensions.get("window");
 
+export const SearchStack = StackNavigator(
+  {
+    ManHinh_Search: {
+      screen: Search
+    }
+  },
+  {
+    headerMode: "none"
+  }
+);
+
 export const CartStack = StackNavigator(
   {
     ManHinh_Cart: {
@@ -106,7 +117,7 @@ export const Tabs = TabNavigator(
     Home: {
       screen: HomeStack,
       navigationOptions: {
-        tabBarLabel: "Trang chủ",
+        tabBarLabel: "Home",
         tabBarIcon: ({ tintColor }) => (
           <SimpleLineIcons name="home" size={14} style={{ color: tintColor }} />
         )
@@ -120,6 +131,19 @@ export const Tabs = TabNavigator(
         tabBarIcon: ({ tintColor }) => (
           <SimpleLineIcons
             name="handbag"
+            size={14}
+            style={{ color: tintColor }}
+          />
+        )
+      }
+    },
+    Search: {
+      screen: SearchStack,
+      navigationOptions: {
+        tabBarLabel: "Tìm kiếm",
+        tabBarIcon: ({ tintColor }) => (
+          <Ionicons
+            name="ios-search"
             size={14}
             style={{ color: tintColor }}
           />

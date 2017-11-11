@@ -2,33 +2,83 @@ import React, { Component } from "react";
 import {
   View,
   Text,
-  TextInput,
+  TouchableOpacity,
+  Image,
   Dimensions,
-  TouchableOpacity
+  TextInput,
+  StyleSheet
 } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import Octicons from "react-native-vector-icons/Octicons";
-import EvilIcons from "react-native-vector-icons/EvilIcons";
-import { StackNavigator, TabNavigator } from "react-navigation";
-var H = Dimensions.get("window").height;
-var W = Dimensions.get("window").width;
+import Global from "../../Global";
+import icLogo from "../../media/md_t.png";
+import search from "../..//API/searchProduct";
+
+const { height } = Dimensions.get("window");
 
 export default class SearchHeader extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      txtSearch: ""
+    };
+  }
+
+  onSearch() {
+    const { txtSearch } = this.state;
+    this.setState({ txtSearch: "" });
+    search(txtSearch)
+      .then(arrProduct => global.setArraySearch(arrProduct))
+      .catch(err => console.log(err));
+  }
+
   render() {
-    return <View style={{ flexDirection: "row" }}>
-        <TouchableOpacity onPress={() => {
-            this.props.goToSearch();
-          }}>
-          <View style={{ flexDirection: "row", width: 300, backgroundColor: "#F0F0F0", margin: 8, borderRadius: 3, paddingRight: 10 }}>
-            <EvilIcons name="search" size={22} />
-            <Text style={{ color: "#F23F1F", paddingLeft: 5, fontSize: 16, fontFamily: "Avenir" }}>
-              Snackers
-            </Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Ionicons name="ios-chatbubbles-outline" size={22} style={{ margin: 8, color: "#F23F1F" }} />
-        </TouchableOpacity>
+    const {
+      wrapper,
+      row1,
+      textInput,
+      iconStyle,
+      titleStyle,
+      iconLogo
+    } = styles;
+    return <View style={wrapper}>
+        <View style={row1}>
+          < Image source = {
+            icLogo
+          }
+          style = {
+            iconLogo
+          }
+          />
+          <Text style={titleStyle}>MidiShop - Bắt kịp xu thế</Text>
+          < Image source = {
+            require("./../../media/chat.png")
+          }
+          style = {
+            iconStyle
+          }
+          />
+        </View>
+        <TextInput style={textInput} placeholder="Bạn cần mua gì?" underlineColorAndroid="transparent" value={this.state.txtSearch} onChangeText={text => this.setState(
+              { txtSearch: text }
+            )} onFocus={() => Global.gotoSearch()} onSubmitEditing={this.onSearch.bind(this)} />
       </View>;
   }
 }
+
+const styles = StyleSheet.create({
+  wrapper: {
+    height: height / 8,
+    backgroundColor: "#F23F1F",
+    padding: 10,
+    justifyContent: "space-around"
+  },
+  row1: { flexDirection: "row", justifyContent: "space-between" },
+  textInput: {
+    height: height / 23,
+    backgroundColor: "#FFF",
+    paddingLeft: 10,
+    paddingVertical: 0
+  },
+  titleStyle: { color: "#FFF", fontFamily: "Avenir", fontSize: 20 },
+  iconStyle: { width: 25, height: 25 },
+  iconLogo: { width: 40, height: 23 }
+});

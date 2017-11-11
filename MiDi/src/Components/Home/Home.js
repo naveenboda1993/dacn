@@ -17,39 +17,73 @@ import EvilIcons from "react-native-vector-icons/EvilIcons";
 import SearchHeader from "../Search/SearchHeader";
 import ThuongHieu from "./ThuongHieu";
 import SanPhamNoiBat from "./SanPhamNoiBat";
+import Global from "../../Global";
 
 var H = Dimensions.get("window").height;
 var W = Dimensions.get("window").width;
 
 export default class Home extends Component {
+  constructor(props) {
+    super(props);
+    Global.gotoSearch = this.gotoSearch.bind(this);
+  }
+  gotoSearch() {
+    this.setState({ selectedTab: "ManHinh_Search" });
+  }
   render() {
-    return <ScrollView style={styles.container}>
-        <SearchHeader goToSearch={() => {
-            this.props.navigation.navigate("ManHinh_Search");
-          }} goToCartView={() => {
+    return (
+      <ScrollView style={styles.container}>
+        <SearchHeader
+          // goToSearch={() => {
+          //   this.setState({ selectedTab: "Search" });
+          // }}
+          goToCartView={() => {
             this.props.navigation.navigate("ManHinh_CartView");
-          }} />
+          }}
+        />
 
         <View style={{ height: H / 5, width: W }}>
-          <Swiper style={{ height: H / 5, width: W }} showsButtons={true} autoplay>
-            <Image style={{ width: W, height: H / 5 }} source={require("./../../Images/banner1.jpg")} />
-            <Image style={{ width: W, height: H / 5 }} source={require("./../../Images/banner2.jpg")} />
-            <Image style={{ width: W, height: H / 5 }} source={require("./../../Images/banner3.jpg")} />
-            <Image style={{ width: W, height: H / 5 }} source={require("./../../Images/banner4.jpg")} />
+          <Swiper
+            style={{ height: H / 5, width: W }}
+            showsButtons={true}
+            autoplay
+          >
+            <Image
+              style={{ width: W, height: H / 5 }}
+              source={require("./../../Images/banner1.jpg")}
+            />
+            <Image
+              style={{ width: W, height: H / 5 }}
+              source={require("./../../Images/banner2.jpg")}
+            />
+            <Image
+              style={{ width: W, height: H / 5 }}
+              source={require("./../../Images/banner3.jpg")}
+            />
+            <Image
+              style={{ width: W, height: H / 5 }}
+              source={require("./../../Images/banner4.jpg")}
+            />
           </Swiper>
         </View>
 
-        <ThuongHieu gotoListProduct={category => {
-            this.props.navigation.navigate("ManHinh_ListProduct", {category});
-          }} />
-        <SanPhamNoiBat goToProductDetail={product => {
+        <ThuongHieu
+          gotoListProduct={category => {
+            this.props.navigation.navigate("ManHinh_ListProduct", { category });
+          }}
+        />
+        <SanPhamNoiBat
+          goToProductDetail={product => {
             this.props.navigation.navigate("ManHinh_ProductDetail", {
               product
             });
-          }} goToMall={() => {
+          }}
+          goToMall={() => {
             this.props.navigation.navigate("ManHinh_Mall");
-          }} />
-      </ScrollView>;
+          }}
+        />
+      </ScrollView>
+    );
   }
 }
 {
