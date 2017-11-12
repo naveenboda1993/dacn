@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 
-import SearchHeader from "../Search/SearchHeader";
+import Header from "../Header";
 import SignIn from "./ShoesMen";
 import SignUp from "./ShoesWomen";
 
@@ -33,8 +33,8 @@ export default class Authentication extends Component {
     const mainJSX = choose ? <SignIn /> : <SignUp />;
     return (
       <View style={container}>
-        <SearchHeader
-          goToSearch={() => {
+        <Header
+          gotoSearch={() => {
             this.props.navigation.navigate("ManHinh_Search");
           }}
         />

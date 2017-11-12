@@ -12,6 +12,7 @@ import Mall from "./Components/Mall/Mall";
 import Search from "./Components/Search/Search";
 // import ShoesMen from "./Components/Mall/ShoesMen";
 // import ShoesWomen from "./Components/Mall/ShoesWomen";
+import Header from "./Components/Header";
 import SearchHeader from "./Components/Search/SearchHeader";
 import SanPhamNoiBat from "./Components/Home/SanPhamNoiBat";
 import ThuongHieu from "./Components/Home/ThuongHieu";
@@ -24,16 +25,16 @@ import ChangeInfo from "./Components/User/ChangeInfo";
 
 const height = Dimensions.get("window");
 
-export const SearchStack = StackNavigator(
-  {
-    ManHinh_Search: {
-      screen: Search
-    }
-  },
-  {
-    headerMode: "none"
-  }
-);
+// export const SearchStack = StackNavigator(
+//   {
+//     ManHinh_Search: {
+//       screen: Search
+//     }
+//   },
+//   {
+//     headerMode: "none"
+//   }
+// );
 
 export const CartStack = StackNavigator(
   {
@@ -51,8 +52,8 @@ export const HomeStack = StackNavigator(
     ManHinh_Home: {
       screen: Home
     },
-    ManHinh_SearchHeader: {
-      screen: SearchHeader
+    ManHinh_Header: {
+      screen: Header
     },
     ManHinh_Search: {
       screen: Search
@@ -71,7 +72,7 @@ export const HomeStack = StackNavigator(
     },
   },
   {
-    headerMode: "SearchHeader"
+    headerMode: "none"
   }
 );
 export const UserStack = StackNavigator(
@@ -99,8 +100,8 @@ export const MallStack = StackNavigator(
     ManHinh_Mall: {
       screen: Mall
     },
-    ManHinh_SearchHeader: {
-      screen: SearchHeader
+    ManHinh_Header: {
+      screen: Header
     },
 
     ManHinh_Search: {
@@ -108,7 +109,7 @@ export const MallStack = StackNavigator(
     },
   },
   {
-    headerMode: "SearchHeader"
+    headerMode: "none"
   }
 );
 
@@ -137,19 +138,19 @@ export const Tabs = TabNavigator(
         )
       }
     },
-    Search: {
-      screen: SearchStack,
-      navigationOptions: {
-        tabBarLabel: "Tìm kiếm",
-        tabBarIcon: ({ tintColor }) => (
-          <Ionicons
-            name="ios-search"
-            size={14}
-            style={{ color: tintColor }}
-          />
-        )
-      }
-    },
+    // Search: {
+    //   screen: SearchStack,
+    //   navigationOptions: {
+    //     tabBarLabel: "Tìm kiếm",
+    //     tabBarIcon: ({ tintColor }) => (
+    //       <Ionicons
+    //         name="ios-search"
+    //         size={14}
+    //         style={{ color: tintColor }}
+    //       />
+    //     )
+    //   }
+    // },
     Cart: {
       screen: CartStack,
       navigationOptions: {

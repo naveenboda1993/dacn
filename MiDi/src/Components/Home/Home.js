@@ -14,31 +14,27 @@ import {
 import Swiper from "react-native-swiper";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 
-import SearchHeader from "../Search/SearchHeader";
+import Header from "../Header";
 import ThuongHieu from "./ThuongHieu";
 import SanPhamNoiBat from "./SanPhamNoiBat";
 import Global from "../../Global";
 
 var H = Dimensions.get("window").height;
 var W = Dimensions.get("window").width;
-
 export default class Home extends Component {
   constructor(props) {
     super(props);
-    Global.gotoSearch = this.gotoSearch.bind(this);
+    // Global.gotoSearch = this.gotoSearch.bind(this);
   }
-  gotoSearch() {
-    this.setState({ selectedTab: "ManHinh_Search" });
-  }
+  // gotoSearch() {
+  //   this.setState({ selectedTab: "ManHinh_Search" });
+  // }
   render() {
     return (
       <ScrollView style={styles.container}>
-        <SearchHeader
-          // goToSearch={() => {
-          //   this.setState({ selectedTab: "Search" });
-          // }}
-          goToCartView={() => {
-            this.props.navigation.navigate("ManHinh_CartView");
+        <Header
+          gotoSearch={() => {
+            this.props.navigation.navigate("ManHinh_Search");
           }}
         />
 

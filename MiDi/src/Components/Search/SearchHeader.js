@@ -8,13 +8,14 @@ import {
   TextInput,
   StyleSheet
 } from "react-native";
-import Global from "../../Global";
+import global from "../../Global";
 import icLogo from "../../media/md_t.png";
-import search from "../..//API/searchProduct";
+// import icMenu from "../../../media/appIcon/ic_menu.png";
+import search from "../../API/searchProduct";
 
 const { height } = Dimensions.get("window");
 
-export default class SearchHeader extends Component {
+export default class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,28 +40,32 @@ export default class SearchHeader extends Component {
       titleStyle,
       iconLogo
     } = styles;
-    return <View style={wrapper}>
+    return (
+      <View style={wrapper}>
         <View style={row1}>
-          < Image source = {
-            icLogo
-          }
-          style = {
-            iconLogo
-          }
-          />
-          <Text style={titleStyle}>MidiShop - Bắt kịp xu thế</Text>
-          < Image source = {
-            require("./../../media/chat.png")
-          }
-          style = {
-            iconStyle
-          }
-          />
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.goBack();
+            }}
+          >
+            <Image
+              source={require("./../../media/back.png")}
+              style={iconStyle}
+            />
+          </TouchableOpacity>
+          <Text style={titleStyle}>MidiShop - Tìm kiếm</Text>
+          <Image source={icLogo} style={iconLogo} />
         </View>
-        <TextInput style={textInput} placeholder="Bạn cần mua gì?" underlineColorAndroid="transparent" value={this.state.txtSearch} onChangeText={text => this.setState(
-              { txtSearch: text }
-            )} onFocus={() => Global.gotoSearch()} onSubmitEditing={this.onSearch.bind(this)} />
-      </View>;
+        <TextInput
+          style={textInput}
+          placeholder="Bạn cần mua gì?"
+          underlineColorAndroid="transparent"
+          value={this.state.txtSearch}
+          onChangeText={text => this.setState({ txtSearch: text })}
+          onSubmitEditing={this.onSearch.bind(this)}
+        />
+      </View>
+    );
   }
 }
 
