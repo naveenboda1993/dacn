@@ -40,32 +40,20 @@ export default class Header extends Component {
       titleStyle,
       iconLogo
     } = styles;
-    return (
-      <View style={wrapper}>
+    return <View style={wrapper}>
         <View style={row1}>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.goBack();
-            }}
-          >
-            <Image
-              source={require("./../../media/back.png")}
-              style={iconStyle}
-            />
+          <TouchableOpacity onPress={() => {
+              this.props.gotoBack();
+            }}>
+            <Image source={require("./../../media/back.png")} style={iconStyle} />
           </TouchableOpacity>
           <Text style={titleStyle}>MidiShop - Tìm kiếm</Text>
           <Image source={icLogo} style={iconLogo} />
         </View>
-        <TextInput
-          style={textInput}
-          placeholder="Bạn cần mua gì?"
-          underlineColorAndroid="transparent"
-          value={this.state.txtSearch}
-          onChangeText={text => this.setState({ txtSearch: text })}
-          onSubmitEditing={this.onSearch.bind(this)}
-        />
-      </View>
-    );
+        <TextInput style={textInput} placeholder="Bạn cần mua gì?" underlineColorAndroid="transparent" value={this.state.txtSearch} onChangeText={text => this.setState(
+              { txtSearch: text }
+            )} onSubmitEditing={this.onSearch.bind(this)} />
+      </View>;
   }
 }
 

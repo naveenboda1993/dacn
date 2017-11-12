@@ -57,7 +57,12 @@ class Search extends Component {
     } = styles;
     return (
       <View style={wrapper}>
-      <SearchHeader/>
+      <SearchHeader
+      	gotoBack={() => {
+            this.props.navigation.navigate("ManHinh_Home");
+          }}
+      
+      />
         <ListView
           dataSource={this.state.listProduct}
           renderRow={productItem => (

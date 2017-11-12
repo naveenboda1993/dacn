@@ -25,16 +25,17 @@ import ChangeInfo from "./Components/User/ChangeInfo";
 
 const height = Dimensions.get("window");
 
-// export const SearchStack = StackNavigator(
-//   {
-//     ManHinh_Search: {
-//       screen: Search
-//     }
-//   },
-//   {
-//     headerMode: "none"
-//   }
-// );
+export const SearchStack = StackNavigator(
+  {
+    ManHinh_Search: {
+      screen: Search
+    },
+    
+  },
+  {
+    headerMode: "none"
+  }
+);
 
 export const CartStack = StackNavigator(
   {
@@ -57,6 +58,9 @@ export const HomeStack = StackNavigator(
     },
     ManHinh_Search: {
       screen: Search
+    },
+    ManHinh_SearchHeader:{
+      screen: SearchHeader
     },
     ManHinh_SanPhamNoiBat: {
       screen: SanPhamNoiBat
@@ -94,6 +98,7 @@ export const UserStack = StackNavigator(
     headerMode: "none"
   }
 );
+
 
 export const MallStack = StackNavigator(
   {
