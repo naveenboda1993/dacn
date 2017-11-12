@@ -74,14 +74,14 @@ class Search extends Component {
               <View style={mainRight}>
                 <Text style={txtName}>{toTitleCase(productItem.name)}</Text>
                 <Text style={txtPrice}>{productItem.price}$</Text>
-                <Text style={txtMaterial}>Material {productItem.material}</Text>
+                <Text style={txtMaterial}>Material: {productItem.material}</Text>
                 <View style={{ flexDirection: "row" }}>
-                  <Text style={txtColor}>Color {productItem.color}</Text>
+                  <Text style={txtColor}>Color</Text>
                   <View
                     style={{
                       height: 15,
                       width: 15,
-                      backgroundColor: "white",
+                      backgroundColor: productItem.color.toLowerCase(),
                       borderRadius: 15,
                       marginLeft: 10
                     }}

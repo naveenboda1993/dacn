@@ -166,7 +166,7 @@ export const Tabs = TabNavigator(
             size={14}
             style={{ color: tintColor }}
           />
-        )
+        ),
       }
     },
 
