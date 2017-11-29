@@ -1,12 +1,5 @@
 import React, { Component } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  Dimensions,
-  ScrollView,
-  TouchableOpacity
+import {View, Text, StyleSheet, Image,Dimensions,ScrollView, TouchableOpacity,AsyncStorage
 } from "react-native";
 import global from "../../Global";
 
@@ -14,7 +7,8 @@ const back = require("../../media/back_c.png");
 const cart = require("../../media/cart.png");
 
 const url = "http://192.168.56.1:8080/api/images/product/";
-
+var arrLoad = [];
+var arr = [];
 export default class ProductDetail extends Component {
   // constructor(props){
   //   super(props);
@@ -31,6 +25,38 @@ export default class ProductDetail extends Component {
   //     product : this.props.navigation.state.params.product
   //   })
   // }
+_setDuLieu = async () => {
+  console.log("++++++")
+   try {
+     var arr = [
+       new OrderProduct(this.props.navigation.state.params.product.id,
+         this.props.navigation.state.params.product.name,
+         this.props.navigation.state.params.product.price,
+         this.props.navigation.state.params.product.color,
+         this.props.navigation.state.params.product.material,
+         this.props.navigation.state.params.product.description,
+         this.props.navigation.state.params.product.images
+       ),
+     ];
+     //console.log("arr ne -------------",arr)
+     arrLoad = arrLoad.concat(arr);
+     await AsyncStorage.setItem('@GioHang1:key', JSON.stringify(arrLoad));
+     //console.log("===========++++++------" + JSON.stringify(arrLoad));
+   } catch (error) {
+   }
+ };
+ _loadDuLieu = async () => {
+  try {
+    var v = await AsyncStorage.getItem('@GioHang1:key');
+    if (v !== null){
+        arrLoad = JSON.parse(v);
+    } else {
+
+    }
+  } catch (error) {
+  }
+  return this._setDuLieu();
+};
   render() {
     const {
       wrapper,
@@ -52,6 +78,7 @@ export default class ProductDetail extends Component {
       txtColor
     } = styles;
     const {
+      id,
       name,
       price,
       color,
@@ -70,7 +97,7 @@ export default class ProductDetail extends Component {
             >
               <Image style={backStyle} source={back} />
             </TouchableOpacity>
-            <TouchableOpacity onPress={this.addThisProductToCart.bind(this)}>
+            <TouchableOpacity onPress={()=>{this._loadDuLieu()}}>
               <Image style={cartStyle} source={cart} />
             </TouchableOpacity>
           </View>
@@ -137,6 +164,16 @@ export default class ProductDetail extends Component {
 const { width } = Dimensions.get("window");
 const swiperWidth = width / 1.8 - 30;
 const swiperHeight = swiperWidth * 452 / 361;
+
+function OrderProduct(i,n,p,c,m,d,img){
+    this.id = i;
+    this.name = n;
+    this.price = p;
+    this.color = c;
+    this.material = m;
+    this.description = d;
+    this.images = img;
+}
 
 const styles = StyleSheet.create({
   wrapper: {

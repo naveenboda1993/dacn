@@ -130,19 +130,19 @@ export const Tabs = TabNavigator(
       }
     },
 
-    Mall: {
-      screen: MallStack,
-      navigationOptions: {
-        tabBarLabel: "Mua sắm",
-        tabBarIcon: ({ tintColor }) => (
-          <SimpleLineIcons
-            name="handbag"
-            size={14}
-            style={{ color: tintColor }}
-          />
-        )
-      }
-    },
+    // Mall: {
+    //   screen: MallStack,
+    //   navigationOptions: {
+    //     tabBarLabel: "Mua sắm",
+    //     tabBarIcon: ({ tintColor }) => (
+    //       <SimpleLineIcons
+    //         name="handbag"
+    //         size={14}
+    //         style={{ color: tintColor }}
+    //       />
+    //     )
+    //   }
+    // },
     // Search: {
     //   screen: SearchStack,
     //   navigationOptions: {
