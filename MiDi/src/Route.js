@@ -22,6 +22,7 @@ import Cart from "./Components/Cart/Cart";
 import SignIn from "./Components/User/SignIn";
 import SignUp from "./Components/User/SignUp";
 import ChangeInfo from "./Components/User/ChangeInfo";
+import OrderHistory from "./Components/User/OrderHistory";
 
 const height = Dimensions.get("window");
 
@@ -92,6 +93,9 @@ export const UserStack = StackNavigator(
     },
     ManHinh_ChangeInfo: {
       screen: ChangeInfo
+    },
+    ManHinh_OrderHistory: {
+      screen: OrderHistory
     }
   },
   {

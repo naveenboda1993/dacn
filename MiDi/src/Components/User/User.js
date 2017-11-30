@@ -52,7 +52,7 @@ class User extends Component {
     this.props.navigation.navigate("User");
   }
   goOrderHistory() {
-    this.props.navigation.navigate("OrderHistory");
+    this.props.navigation.navigate("ManHinh_OrderHistory");
   }
   goUserDetail() {
     const { user } = this.state;
