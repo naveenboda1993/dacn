@@ -118,6 +118,10 @@ _setDuLieu = async () => {
                 source={{ uri: `${url}${images[1]}` }}
                 style={productImageStyle}
               />
+			  <Image
+                source={{ uri: `${url}${images[2]}` }}
+                style={productImageStyle}
+              />
             </ScrollView>
           </View>
           <View style={footer}>
