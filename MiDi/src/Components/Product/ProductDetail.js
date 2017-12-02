@@ -6,7 +6,7 @@ import global from "../../Global";
 const back = require("../../media/back_c.png");
 const cart = require("../../media/cart.png");
 
-const url = "http://192.168.56.1:8080/api/images/product/";
+const url = "http://192.168.0.105/api/images/product/";
 var arrLoad = [];
 var arr = [];
 export default class ProductDetail extends Component {
@@ -35,19 +35,20 @@ _setDuLieu = async () => {
          this.props.navigation.state.params.product.color,
          this.props.navigation.state.params.product.material,
          this.props.navigation.state.params.product.description,
-         this.props.navigation.state.params.product.images
+         this.props.navigation.state.params.product.images,
+         1
        ),
      ];
      //console.log("arr ne -------------",arr)
      arrLoad = arrLoad.concat(arr);
-     await AsyncStorage.setItem('@GioHang1:key', JSON.stringify(arrLoad));
+     await AsyncStorage.setItem('@GioHang5:key', JSON.stringify(arrLoad));
      //console.log("===========++++++------" + JSON.stringify(arrLoad));
    } catch (error) {
    }
  };
  _loadDuLieu = async () => {
   try {
-    var v = await AsyncStorage.getItem('@GioHang1:key');
+    var v = await AsyncStorage.getItem('@GioHang5:key');
     if (v !== null){
         arrLoad = JSON.parse(v);
     } else {
@@ -169,7 +170,7 @@ const { width } = Dimensions.get("window");
 const swiperWidth = width / 1.8 - 30;
 const swiperHeight = swiperWidth * 452 / 361;
 
-function OrderProduct(i,n,p,c,m,d,img){
+function OrderProduct(i,n,p,c,m,d,img,q){
     this.id = i;
     this.name = n;
     this.price = p;
@@ -177,6 +178,7 @@ function OrderProduct(i,n,p,c,m,d,img){
     this.material = m;
     this.description = d;
     this.images = img;
+    this.quantity = q;
 }
 
 const styles = StyleSheet.create({

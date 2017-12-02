@@ -15,7 +15,7 @@ import {
 } from "react-native";
 import Swiper from "react-native-swiper";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
-const url = "http://192.168.56.1:8080/api/images/product/";
+const url = "http://192.168.0.105/api/images/product/";
 import initData from "../../API/initData";
 
 var H = Dimensions.get("window").height;
@@ -55,10 +55,10 @@ export default class SanPhamNoiBat extends Component {
             <Text style={styles.title}>Sản phẩm nổi bật</Text>
           </View>
 
-          <FlatList data={this.state.topProducts} 
+          <FlatList data={this.state.topProducts}
             numColumns={2}
-            keyExtractor={item=>item.id} 
-            renderItem={({item})=>this._spnoibat(item)} 
+            keyExtractor={item=>item.id}
+            renderItem={({item})=>this._spnoibat(item)}
           />
 
         </View>
@@ -99,7 +99,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
     marginRight: 5,
     marginLeft: 5
-    
+
   },
   productContainer: {
     width: productWidth,

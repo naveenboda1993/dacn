@@ -11,7 +11,7 @@ import {
   FlatList
 } from "react-native";
 
-const url = "http://192.168.56.1:8080/api/images/product/";
+const url = "http://192.168.0.105/api/images/product/";
 var arrLoad = [];
 function toTitleCase(str) {
   return str.replace(
@@ -19,41 +19,93 @@ function toTitleCase(str) {
     txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
   );
 }
-
+var t;
 class Cart extends Component {
   constructor(props){
     super(props);
+    t = this;
     this.state= {
-      arrProduct : []
+      arrProduct : [],
+      total: 0
     }
   }
-  gotoDetail() {
-    const { navigator } = this.props;
-    navigator.push({ name: "PRODUCT_DETAIL" });
-  }
-  _loadCart = async () => {
-   try {
-     var v = await AsyncStorage.getItem('@GioHang1:key');
-     if (v !== null){
-        console.log(v);
-        arrLoad = JSON.parse(v);
-        this.setState({
-          arrProduct: arrLoad
-        })
-     } else {
-        console.log("khong load dc ne");
-     }
-   } catch (error) {
+    _total(){
+      var allPriceProduct =0;
+      arrLoad.map(function(o, i){
+        allPriceProduct = allPriceProduct + o.price*o.quantity
+      });
+      t.setState({
+        total: allPriceProduct
+      })
+    }
+    gotoDetail() {
+      const { navigator } = this.props;
+      navigator.push({ name: "PRODUCT_DETAIL" });
+    }
+    _loadCart = async () => {
+     try {
+       var v = await AsyncStorage.getItem('@GioHang5:key');
+       if (v !== null){
+          console.log(v);
+          arrLoad = JSON.parse(v);
+          this.setState({
+            arrProduct: arrLoad
+          })
+          this._total();
+       } else {
+          console.log("khong load dc ne");
+       }
+     } catch (error) {
 
+     }
+   };
+   _saveCart = async()=>{
+    try{
+      await AsyncStorage.setItem("@GioHang5:key", JSON.stringify(arrLoad))
+    }catch(e){
+      console.log(e);
+    }
+  }
+   plusItem(i){
+     console.log("day la i ne +++++" +i);
+     var stt = arrLoad.findIndex((e)=>{
+       return e.id==i
+     });
+     console.log("so thu tu cu gio hang la"+ stt)
+     arrLoad[stt].quantity += 1;
+     t._saveCart().done();
+     t._loadCart().done();
    }
- };
- componentWillReceiveProps(){
-   this._loadCart();
-   console.log("componentWillReceiveProps+++++")
- }
-  componentDidMount(){
-    this._loadCart().done();
-  };
+   minusItem(i){
+    console.log("day la i ne +++++" +i);
+    var stt = arrLoad.findIndex((e)=>{
+      return e.id==i
+    });
+    console.log("so thu tu cu gio hang la"+ stt)
+    arrLoad[stt].quantity -= 1;
+    t._saveCart().done();
+    t._loadCart().done();
+  }
+  deleteItem(i){
+    var stt = arrLoad.findIndex((e)=>{
+      return e.id==i
+    });
+    for(var x = arrLoad.length - 1; x >= 0; x--) {
+      if(arrLoad[x].id === i) {
+         arrLoad.splice(x, 1);
+      }
+      t._saveCart().done();
+      t._loadCart().done();
+    }
+  }
+   componentWillReceiveProps(){
+     this._loadCart();
+     console.log("componentWillReceiveProps+++++")
+   }
+   componentDidMount(){
+      console.log("componentDidMount+++++")
+      this._loadCart().done();
+    };
 
   render() {
     const {
@@ -77,7 +129,11 @@ class Cart extends Component {
               <View style={[mainRight]}>
                 <View style={{ justifyContent: "space-between", flexDirection: "row" }}>
                   <Text style={txtName}>{toTitleCase(item.name)}</Text>
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                      onPress={()=>{
+                        this.deleteItem(item.id)
+                      }}
+                    >
                     <Text
                       style={{ fontFamily: "Avenir", color: "#969696" }}
                     >
@@ -87,14 +143,23 @@ class Cart extends Component {
                 </View>
                 <View>
                   <Text style={txtPrice}>{item.price}$</Text>
+                  <Text style={txtPrice}>Total: {item.price * item.quantity}</Text>
                 </View>
                 <View style={productController}>
                   <View style={numberOfProduct}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={()=>{
+                          this.plusItem(item.id)
+                        }}
+                      >
                       <Text>+</Text>
                     </TouchableOpacity>
-                    <Text>{3}</Text>
-                    <TouchableOpacity>
+                    <Text>{item.quantity}</Text>
+                    <TouchableOpacity
+                        onPress={()=>{
+                          this.minusItem(item.id)
+                        }}
+                      >
                       <Text>-</Text>
                     </TouchableOpacity>
                   </View>
@@ -107,7 +172,7 @@ class Cart extends Component {
               </View>
             </View>} />
         <TouchableOpacity style={checkoutButton}>
-          <Text style={checkoutTitle}>Tổng {1000}$ - THANH TOÁN NGAY</Text>
+          <Text style={checkoutTitle}>Tổng {this.state.total}$ - THANH TOÁN NGAY</Text>
         </TouchableOpacity>
       </View>;
   }

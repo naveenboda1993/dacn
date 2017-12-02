@@ -11,7 +11,7 @@ import {
 import global from "../../Global";
 import SearchHeader from "./SearchHeader";
 
-const url = "http://192.168.56.1:8080/api/images/product/";
+const url = "http://192.168.0.105/api/images/product/";
 
 function toTitleCase(str) {
   return str.replace(
@@ -61,7 +61,7 @@ class Search extends Component {
       	gotoBack={() => {
             this.props.navigation.navigate("ManHinh_Home");
           }}
-      
+
       />
         <ListView
           dataSource={this.state.listProduct}
