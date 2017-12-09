@@ -3,134 +3,96 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
+  ListView,
   Dimensions,
   StyleSheet,
   Image,
-  AsyncStorage,
-  FlatList,
   Alert
 } from "react-native";
+import global from "../../Global";
+import sendOrder from "../../API/sendOrder";
+import getToken from "../../API/getToken";
+import checkLogin from "../../API/checkLogin";
+import initData from "../../API/initData";
+import saveCart from "../../API/saveCart";
+import getCart from "../../API/getCart";
 
-const url = "http://192.168.56.1:8080/api/images/product/";
-var arrLoad = [];
 function toTitleCase(str) {
   return str.replace(
     /\w\S*/g,
     txt => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
   );
 }
-var t;
+
+const url = "http://192.168.56.1:8080/api/images/product/";
+
 class Cart extends Component {
   constructor(props) {
     super(props);
-    t = this;
     this.state = {
-      arrProduct: [],
-      total: 0
+      cartArray: []
     };
+    global.addProductToCart = this.addProductToCart.bind(this);
   }
-  _total() {
-    var allPriceProduct = 0;
-    arrLoad.map(function(o, i) {
-      allPriceProduct = allPriceProduct + o.price * o.quantity;
+  componentDidMount() {
+    getToken()
+      .then(token => checkLogin(token))
+      .then(res => {
+        getCart().then(cartArray => this.setState({ cartArray }));
+      })
+      .catch(err => console.log("LOI CHECK LOGIN", err));
+  }
+  addProductToCart(product) {
+    const isExist = this.state.cartArray.some(e => e.product.id === product.id);
+    if (isExist) return false;
+    this.setState(
+      { cartArray: this.state.cartArray.concat({ product, quantity: 1 }) },
+      () => saveCart(this.state.cartArray)
+    );
+  }
+  incrQuantity(productId) {
+    const newCart = this.state.cartArray.map(e => {
+      if (e.product.id !== productId) return e;
+      return { product: e.product, quantity: e.quantity + 1 };
     });
-    t.setState({
-      total: allPriceProduct
+    this.setState({ cartArray: newCart }, () => saveCart(this.state.cartArray));
+  }
+
+  decrQuantity(productId) {
+    const newCart = this.state.cartArray.map(e => {
+      if (e.product.id !== productId) return e;
+      return { product: e.product, quantity: e.quantity - 1 };
     });
+    this.setState({ cartArray: newCart }, () => saveCart(this.state.cartArray));
   }
-  gotoDetail() {
-    const { navigator } = this.props;
-    navigator.push({ name: "PRODUCT_DETAIL" });
+
+  removeProduct(productId) {
+    const newCart = this.state.cartArray.filter(
+      e => e.product.id !== productId
+    );
+    this.setState({ cartArray: newCart }, () => saveCart(this.state.cartArray));
   }
-  _loadCart = async () => {
+  gotoDetail(product) {
+    const { navigate } = this.props.navigation;
+    navigate("ManHinh_ProductDetail", { product });
+  }
+
+  async onSendOrder() {
     try {
-      var v = await AsyncStorage.getItem("@GioHang5:key");
-      if (v !== null) {
-        console.log(v);
-        arrLoad = JSON.parse(v);
-        this.setState({
-          arrProduct: arrLoad
-        });
-        this._total();
+      const token = await getToken();
+      const arrayDetail = this.state.cartArray.map(e => ({
+        id: e.product.id,
+        quantity: e.quantity
+      }));
+      const kq = await sendOrder(token, arrayDetail);
+      if (kq === "THEM_THANH_CONG") {
+        console.log("THEM THANH CONG");
       } else {
-        console.log("khong load dc ne");
+        console.log("THEM THAT BAI", kq);
       }
-    } catch (error) {}
-  };
-  _saveCart = async () => {
-    try {
-      await AsyncStorage.setItem("@GioHang5:key", JSON.stringify(arrLoad));
     } catch (e) {
       console.log(e);
     }
-  };
-  plusItem(i) {
-    console.log("day la i ne +++++" + i);
-    var stt = arrLoad.findIndex(e => {
-      return e.id == i;
-    });
-    console.log("so thu tu cu gio hang la" + stt);
-    arrLoad[stt].quantity += 1;
-    t._saveCart().done();
-    t._loadCart().done();
-  }
-  minusItem(i) {
-    console.log("day la i ne +++++" + i);
-    var stt = arrLoad.findIndex(e => {
-      return e.id == i;
-    });
-    console.log("so thu tu cu gio hang la" + stt);
-    arrLoad[stt].quantity -= 1;
-    t._saveCart().done();
-    t._loadCart().done();
-  }
-  deleteItem(i) {
-    var stt = arrLoad.findIndex(e => {
-      return e.id == i;
-    });
-    for (var x = arrLoad.length - 1; x >= 0; x--) {
-      if (arrLoad[x].id === i) {
-        arrLoad.splice(x, 1);
-      }
-      t._saveCart().done();
-      t._loadCart().done();
-    }
-  }
-  componentWillReceiveProps() {
-    this._loadCart();
-    console.log("componentWillReceiveProps+++++");
-  }
-  componentDidMount() {
-    console.log("componentDidMount+++++");
-    this._loadCart().done();
-  }
-  _loadUser = async () => {
-    try {
-      var v = await AsyncStorage.getItem("@Username:key");
-      if (v !== null) {
-        console.log("user:"+ v)
-        console.log("di den man hinh thanh toan cac kieu");
-      } else {
-        Alert.alert(
-          "Notification",
-          "Vui long dang nhap de tiep tup",
-          [
-            {
-              text: "Cancel",
-              onPress: () => console.log("Cancel Pressed"),
-              style: "cancel"
-            },
-            { text: "OK", onPress: () => this.props}
-          ],
-          { cancelable: false }
-        );
-      }
-    } catch (error) {}
-  };
-
-  order() {
-    this._loadUser().done();
   }
 
   render() {
@@ -139,7 +101,7 @@ class Cart extends Component {
       checkoutButton,
       checkoutTitle,
       wrapper,
-      product,
+      productStyle,
       mainRight,
       productController,
       txtName,
@@ -149,15 +111,21 @@ class Cart extends Component {
       txtShowDetail,
       showDetailContainer
     } = styles;
-    return (
+    const { cartArray } = this.state;
+    const arrTotal = cartArray.map(e => e.product.price * e.quantity);
+    const total = arrTotal.length ? arrTotal.reduce((a, b) => a + b) : 0;
+    const loginJSX = (
       <View style={wrapper}>
-        <FlatList
-          keyExtractor={item => item.id}
-          data={this.state.arrProduct}
-          renderItem={({ item }) => (
-            <View style={product}>
+        <ListView
+          contentContainerStyle={main}
+          enableEmptySections
+          dataSource={new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1 !== r2
+          }).cloneWithRows(cartArray)}
+          renderRow={cartItem => (
+            <View style={productStyle}>
               <Image
-                source={{ uri: `${url}${item.images[0]}` }}
+                source={{ uri: `${url}${cartItem.product.images[0]}` }}
                 style={productImage}
               />
               <View style={[mainRight]}>
@@ -167,11 +135,12 @@ class Cart extends Component {
                     flexDirection: "row"
                   }}
                 >
-                  <Text style={txtName}>{toTitleCase(item.name)}</Text>
+                  <Text style={txtName}>
+                    {toTitleCase(cartItem.product.name)}
+                  </Text>
                   <TouchableOpacity
-                    onPress={() => {
-                      this.deleteItem(item.id);
-                    }}
+                    onPress={() => this.removeProduct(cartItem.product.id)}
+                    style={{ marginRight: 10 }}
                   >
                     <Text style={{ fontFamily: "Avenir", color: "#969696" }}>
                       X
@@ -179,36 +148,27 @@ class Cart extends Component {
                   </TouchableOpacity>
                 </View>
                 <View>
-                  <Text style={txtPrice}>{item.price}$</Text>
-                  <Text style={txtPrice}>
-                    Total: {item.price * item.quantity}
-                  </Text>
+                  <Text style={txtPrice}>{cartItem.product.price} VNĐ</Text>
                 </View>
                 <View style={productController}>
                   <View style={numberOfProduct}>
                     <TouchableOpacity
-                      onPress={() => {
-                        this.plusItem(item.id);
-                      }}
+                      onPress={() => this.incrQuantity(cartItem.product.id)}
                     >
-                      <Text>+</Text>
+                      <Text style={{ fontSize: 14 }}>+</Text>
                     </TouchableOpacity>
-                    <Text>{item.quantity}</Text>
+                    <Text>{cartItem.quantity}</Text>
                     <TouchableOpacity
-                      onPress={() => {
-                        this.minusItem(item.id);
-                      }}
+                      onPress={() => this.decrQuantity(cartItem.product.id)}
                     >
-                      <Text>-</Text>
+                      <Text style={{ fontSize: 14 }}>-</Text>
                     </TouchableOpacity>
                   </View>
                   <TouchableOpacity
                     style={showDetailContainer}
-                    onPress={() => {
-                      this.props.goToProductDetail(item);
-                    }}
+                    onPress={() => this.gotoDetail(cartItem.product)}
                   >
-                    <Text style={txtShowDetail}>SHOW DETAILS</Text>
+                    <Text style={txtShowDetail}>Xem chi tiết</Text>
                   </TouchableOpacity>
                 </View>
               </View>
@@ -217,16 +177,16 @@ class Cart extends Component {
         />
         <TouchableOpacity
           style={checkoutButton}
-          onPress={() => {
-            this.order();
-          }}
+          onPress={this.onSendOrder.bind(this)}
         >
           <Text style={checkoutTitle}>
-            Tổng {this.state.total}$ - THANH TOÁN NGAY
+            {" "}
+            Tổng tiền: {total} VNĐ - THANH TOÁN NGAY
           </Text>
         </TouchableOpacity>
       </View>
     );
+    return <View style={{ flex: 1 }}>{loginJSX}</View>;
   }
 }
 
@@ -255,14 +215,14 @@ const styles = StyleSheet.create({
   checkoutTitle: {
     color: "#FFF",
     fontSize: 15,
-    fontWeight: "bold",
+    fontWeight: "200",
     fontFamily: "Avenir"
   },
-  product: {
+  productStyle: {
     flexDirection: "row",
-    margin: 10,
+    margin: 5,
     padding: 10,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "whitesmoke",
     borderRadius: 2,
     shadowColor: "#3B5458",
     shadowOffset: { width: 0, height: 3 },
@@ -289,22 +249,21 @@ const styles = StyleSheet.create({
   txtName: {
     paddingLeft: 20,
     color: "#A7A7A7",
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "400",
     fontFamily: "Avenir"
   },
   txtPrice: {
     paddingLeft: 20,
     color: "#F23F1F",
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: "400",
     fontFamily: "Avenir"
   },
   txtShowDetail: {
-    color: "#C21C70",
-    fontSize: 10,
-    fontWeight: "400",
     fontFamily: "Avenir",
+    color: "#B10D65",
+    fontSize: 12,
     textAlign: "right"
   },
   showDetailContainer: {
