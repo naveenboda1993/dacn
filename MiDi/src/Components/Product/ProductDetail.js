@@ -6,7 +6,7 @@ import global from "../../Global";
 const back = require("../../media/back_c.png");
 const cart = require("../../media/cart.png");
 
-const url = "http://192.168.0.105/api/images/product/";
+const url = "http://192.168.56.1:8080/api/images/product/";
 var arrLoad = [];
 var arr = [];
 export default class ProductDetail extends Component {

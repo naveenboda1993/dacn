@@ -15,7 +15,7 @@ import sp1 from "../../media/32.jpg";
 
 import getListProduct from "../../API/getListProduct";
 
-const url = "http://192.168.0.105/api/images/product/";
+const url = "http://192.168.56.1:8080/api/images/product/";
 
 function toTitleCase(str) {
   return str.replace(

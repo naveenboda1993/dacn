@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
-  Image
+  Image,
+  AsyncStorage
 } from "react-native";
 import signIn from "../../API/signIn";
 import global from "../../Global";
@@ -33,8 +34,17 @@ export default class SignIn extends Component {
         this.Fail("Kiểm tra lại thông tin đăng nhập");
       });
   }
-
+  _saveUser = async()=>{
+    try{
+      await AsyncStorage.setItem("@Username:key", this.state.email)
+     // console.log("ok save user")
+    }catch(e){
+      //console.log(e);
+    }
+  }
   Succes() {
+    console.log("AAAAAA");
+         this._saveUser().done();
         this.props.navigation.navigate("ManHinh_User");
   }
 

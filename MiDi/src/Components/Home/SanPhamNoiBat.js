@@ -15,7 +15,7 @@ import {
 } from "react-native";
 import Swiper from "react-native-swiper";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
-const url = "http://192.168.0.105/api/images/product/";
+const url = "http://192.168.56.1:8080/api/images/product/";
 import initData from "../../API/initData";
 
 var H = Dimensions.get("window").height;

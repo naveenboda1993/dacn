@@ -8,10 +8,11 @@ import {
   StyleSheet,
   Image,
   AsyncStorage,
-  FlatList
+  FlatList,
+  Alert
 } from "react-native";
 
-const url = "http://192.168.0.105/api/images/product/";
+const url = "http://192.168.56.1:8080/api/images/product/";
 var arrLoad = [];
 function toTitleCase(str) {
   return str.replace(
@@ -21,91 +22,116 @@ function toTitleCase(str) {
 }
 var t;
 class Cart extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     t = this;
-    this.state= {
-      arrProduct : [],
+    this.state = {
+      arrProduct: [],
       total: 0
-    }
+    };
   }
-    _total(){
-      var allPriceProduct =0;
-      arrLoad.map(function(o, i){
-        allPriceProduct = allPriceProduct + o.price*o.quantity
-      });
-      t.setState({
-        total: allPriceProduct
-      })
-    }
-    gotoDetail() {
-      const { navigator } = this.props;
-      navigator.push({ name: "PRODUCT_DETAIL" });
-    }
-    _loadCart = async () => {
-     try {
-       var v = await AsyncStorage.getItem('@GioHang5:key');
-       if (v !== null){
-          console.log(v);
-          arrLoad = JSON.parse(v);
-          this.setState({
-            arrProduct: arrLoad
-          })
-          this._total();
-       } else {
-          console.log("khong load dc ne");
-       }
-     } catch (error) {
-
-     }
-   };
-   _saveCart = async()=>{
-    try{
-      await AsyncStorage.setItem("@GioHang5:key", JSON.stringify(arrLoad))
-    }catch(e){
+  _total() {
+    var allPriceProduct = 0;
+    arrLoad.map(function(o, i) {
+      allPriceProduct = allPriceProduct + o.price * o.quantity;
+    });
+    t.setState({
+      total: allPriceProduct
+    });
+  }
+  gotoDetail() {
+    const { navigator } = this.props;
+    navigator.push({ name: "PRODUCT_DETAIL" });
+  }
+  _loadCart = async () => {
+    try {
+      var v = await AsyncStorage.getItem("@GioHang5:key");
+      if (v !== null) {
+        console.log(v);
+        arrLoad = JSON.parse(v);
+        this.setState({
+          arrProduct: arrLoad
+        });
+        this._total();
+      } else {
+        console.log("khong load dc ne");
+      }
+    } catch (error) {}
+  };
+  _saveCart = async () => {
+    try {
+      await AsyncStorage.setItem("@GioHang5:key", JSON.stringify(arrLoad));
+    } catch (e) {
       console.log(e);
     }
-  }
-   plusItem(i){
-     console.log("day la i ne +++++" +i);
-     var stt = arrLoad.findIndex((e)=>{
-       return e.id==i
-     });
-     console.log("so thu tu cu gio hang la"+ stt)
-     arrLoad[stt].quantity += 1;
-     t._saveCart().done();
-     t._loadCart().done();
-   }
-   minusItem(i){
-    console.log("day la i ne +++++" +i);
-    var stt = arrLoad.findIndex((e)=>{
-      return e.id==i
+  };
+  plusItem(i) {
+    console.log("day la i ne +++++" + i);
+    var stt = arrLoad.findIndex(e => {
+      return e.id == i;
     });
-    console.log("so thu tu cu gio hang la"+ stt)
+    console.log("so thu tu cu gio hang la" + stt);
+    arrLoad[stt].quantity += 1;
+    t._saveCart().done();
+    t._loadCart().done();
+  }
+  minusItem(i) {
+    console.log("day la i ne +++++" + i);
+    var stt = arrLoad.findIndex(e => {
+      return e.id == i;
+    });
+    console.log("so thu tu cu gio hang la" + stt);
     arrLoad[stt].quantity -= 1;
     t._saveCart().done();
     t._loadCart().done();
   }
-  deleteItem(i){
-    var stt = arrLoad.findIndex((e)=>{
-      return e.id==i
+  deleteItem(i) {
+    var stt = arrLoad.findIndex(e => {
+      return e.id == i;
     });
-    for(var x = arrLoad.length - 1; x >= 0; x--) {
-      if(arrLoad[x].id === i) {
-         arrLoad.splice(x, 1);
+    for (var x = arrLoad.length - 1; x >= 0; x--) {
+      if (arrLoad[x].id === i) {
+        arrLoad.splice(x, 1);
       }
       t._saveCart().done();
       t._loadCart().done();
     }
   }
-   componentWillReceiveProps(){
-     this._loadCart();
-     console.log("componentWillReceiveProps+++++")
-   }
-   componentDidMount(){
-      console.log("componentDidMount+++++")
-      this._loadCart().done();
-    };
+  componentWillReceiveProps() {
+    this._loadCart();
+    console.log("componentWillReceiveProps+++++");
+  }
+  componentDidMount() {
+    console.log("componentDidMount+++++");
+    this._loadCart().done();
+  }
+  _loadUser = async () => {
+    try {
+      var v = await AsyncStorage.getItem("@Username:key");
+      if (v !== null) {
+        console.log("user:"+ v)
+        console.log("di den man hinh thanh toan cac kieu");
+      } else {
+        Alert.alert(
+          "Notification",
+          "Vui long dang nhap de tiep tup",
+          [
+            {
+              text: "Cancel",
+              onPress: () => console.log("Cancel Pressed"),
+              style: "cancel"
+            },
+            { text: "OK", onPress: () => this.props}
+          ],
+          { cancelable: false }
+        );
+      }
+    } catch (error) {}
+  };
+
+  order() {
+    this._loadUser().done();
+  }
 
   render() {
     const {
@@ -123,58 +149,84 @@ class Cart extends Component {
       txtShowDetail,
       showDetailContainer
     } = styles;
-    return <View style={wrapper}>
-        <FlatList keyExtractor={item => item.id} data={this.state.arrProduct} renderItem={({ item }) => <View style={product}>
-              <Image source={{ uri: `${url}${item.images[0]}` }} style={productImage} />
+    return (
+      <View style={wrapper}>
+        <FlatList
+          keyExtractor={item => item.id}
+          data={this.state.arrProduct}
+          renderItem={({ item }) => (
+            <View style={product}>
+              <Image
+                source={{ uri: `${url}${item.images[0]}` }}
+                style={productImage}
+              />
               <View style={[mainRight]}>
-                <View style={{ justifyContent: "space-between", flexDirection: "row" }}>
+                <View
+                  style={{
+                    justifyContent: "space-between",
+                    flexDirection: "row"
+                  }}
+                >
                   <Text style={txtName}>{toTitleCase(item.name)}</Text>
                   <TouchableOpacity
-                      onPress={()=>{
-                        this.deleteItem(item.id)
-                      }}
-                    >
-                    <Text
-                      style={{ fontFamily: "Avenir", color: "#969696" }}
-                    >
+                    onPress={() => {
+                      this.deleteItem(item.id);
+                    }}
+                  >
+                    <Text style={{ fontFamily: "Avenir", color: "#969696" }}>
                       X
                     </Text>
                   </TouchableOpacity>
                 </View>
                 <View>
                   <Text style={txtPrice}>{item.price}$</Text>
-                  <Text style={txtPrice}>Total: {item.price * item.quantity}</Text>
+                  <Text style={txtPrice}>
+                    Total: {item.price * item.quantity}
+                  </Text>
                 </View>
                 <View style={productController}>
                   <View style={numberOfProduct}>
                     <TouchableOpacity
-                        onPress={()=>{
-                          this.plusItem(item.id)
-                        }}
-                      >
+                      onPress={() => {
+                        this.plusItem(item.id);
+                      }}
+                    >
                       <Text>+</Text>
                     </TouchableOpacity>
                     <Text>{item.quantity}</Text>
                     <TouchableOpacity
-                        onPress={()=>{
-                          this.minusItem(item.id)
-                        }}
-                      >
+                      onPress={() => {
+                        this.minusItem(item.id);
+                      }}
+                    >
                       <Text>-</Text>
                     </TouchableOpacity>
                   </View>
-                  <TouchableOpacity style={showDetailContainer} onPress={() => {
+                  <TouchableOpacity
+                    style={showDetailContainer}
+                    onPress={() => {
                       this.props.goToProductDetail(item);
-                    }}>
+                    }}
+                  >
                     <Text style={txtShowDetail}>SHOW DETAILS</Text>
                   </TouchableOpacity>
                 </View>
               </View>
-            </View>} />
-        <TouchableOpacity style={checkoutButton}>
-          <Text style={checkoutTitle}>Tổng {this.state.total}$ - THANH TOÁN NGAY</Text>
+            </View>
+          )}
+        />
+        <TouchableOpacity
+          style={checkoutButton}
+          onPress={() => {
+            this.order();
+          }}
+        >
+          <Text style={checkoutTitle}>
+            Tổng {this.state.total}$ - THANH TOÁN NGAY
+          </Text>
         </TouchableOpacity>
-      </View>;
+      </View>
+    );
   }
 }
 

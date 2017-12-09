@@ -1,0 +1,315 @@
+[33mcommit 958e23b24bf65cbcc1365a1fed51ee64e544033b[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Wed Dec 6 13:49:44 2017 +0700
+
+    bk
+
+[33mcommit 9cb8bb0b865588f0fd08912fab61a00f8eda6360[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Wed Dec 6 02:45:24 2017 +0700
+
+    backup 061217 0245am
+
+[33mcommit 646a09c17235718a1f09a8546d660565305782ad[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Sun Dec 3 13:27:33 2017 +0700
+
+    bk 01217 0127pm
+
+[33mcommit b5b1eefb6d68a8978a563a9d9ececab0695f7755[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Sun Dec 3 04:22:41 2017 +0700
+
+    bk 031217 0422am
+
+[33mcommit d71c08c7703af6fa9bc79cf37e8eaa4d0293fdaf[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Sun Dec 3 02:20:29 2017 +0700
+
+    backup 031217 0220am
+
+[33mcommit 20602cc68ffdeb95ed35216a657dd1e705181264[m
+Author: thethoainguyenn <thoailun@THOAILUNs-MacBook-Pro.local>
+Date:   Sat Dec 2 19:08:18 2017 +0700
+
+    Thoai
+    
+    Update cart done
+
+[33mcommit 9fd8b68fbc336f766291997ca37bdb6ac92876ce[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Sat Dec 2 15:02:50 2017 +0700
+
+    backup 021217 002pm
+
+[33mcommit 370df2168ccdfd79c4081843068c8b5f2ae650de[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Fri Dec 1 02:48:51 2017 +0700
+
+    order history done
+
+[33mcommit 134f0594cb7887ee1a132268e9761fab27194e56[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Fri Dec 1 01:32:17 2017 +0700
+
+    xong quản lý sản phẩm, thống kê đang bị fail
+
+[33mcommit a677fd7fd452a6e9dbf1795b92a401fe8df06bde[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Thu Nov 30 00:56:21 2017 +0700
+
+    backup 301117 1256am
+
+[33mcommit aa1acb8d3018724ef3fd186ecb1f1cd19fcf765d[m
+Author: Dinh Nguyen <32100818+dinhtnguyenn@users.noreply.github.com>
+Date:   Thu Nov 30 01:01:35 2017 +0700
+
+    Create README.md
+
+[33mcommit 3c978dd4cafae113364ebc2ea1dccc539f9628cb[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Wed Nov 29 23:14:29 2017 +0700
+
+    backup 291117 1114pm
+
+[33mcommit 622e406935625d6498c4a991dadee489da665f32[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Wed Nov 29 19:12:45 2017 +0700
+
+    backup
+
+[33mcommit 50b33e5ab852052bb5a18c7dbf72460bcf913655[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Wed Nov 29 18:14:07 2017 +0700
+
+    backup 291117
+
+[33mcommit abcf3cb8f3afa17c21fdb5ad395c9960db060943[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Wed Nov 29 00:16:17 2017 +0700
+
+    Thêm thành công menu tròn
+    
+    https://github.com/mastermoo/react-native-action-button
+
+[33mcommit add92d71721b7ed8223d313edc52021ab501fa1f[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Wed Nov 29 00:01:21 2017 +0700
+
+    Revert "bk 231117 1059pm - add VectorIcon and test OK"
+    
+    This reverts commit 991190eba503a69f44b0cf39799a998349c6389b.
+
+[33mcommit 991190eba503a69f44b0cf39799a998349c6389b[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Thu Nov 23 22:59:59 2017 +0700
+
+    bk 231117 1059pm - add VectorIcon and test OK
+
+[33mcommit fa8b6798a357d0c28c7447c638cda70dd641bdc7[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Thu Nov 23 22:34:21 2017 +0700
+
+    bk 231117 1034pm - init midiadmin
+
+[33mcommit 960c2d6d0ef281873f00b3534c6620ba28c0e734[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Sun Nov 12 14:33:02 2017 +0700
+
+    bk 121117 0232pm
+
+[33mcommit 6390680ae51da072336dc8e29d7a66817e99b6cc[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Sun Nov 12 14:01:29 2017 +0700
+
+    bk 121117 0201pm
+
+[33mcommit 2c1c6d6459ddb4c4598ebb35351475be8b87c9c2[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Sun Nov 12 13:35:49 2017 +0700
+
+    bk 121117 0135pm
+
+[33mcommit f4afff8c38d1df0e2bdb2f1a558f9324d6d60135[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Sun Nov 12 02:58:47 2017 +0700
+
+    bk 121117 0258am
+
+[33mcommit 7699cde772bcbfa4fd715a0b780102cba1223703[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Sun Nov 12 00:49:04 2017 +0700
+
+    bk 121117 1248am
+
+[33mcommit f10f193c21b33f8f96ea540e3b855e39f3099c03[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Sat Nov 11 01:12:58 2017 +0700
+
+    bk 111117 0112am "sửa lại thương hiệu từ gán cứng thành động"
+
+[33mcommit c382542b3f5caa8854c5b37c1c49c7b4f45866fc[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Fri Nov 10 12:53:29 2017 +0700
+
+    bk 10117 1253pm
+
+[33mcommit 3fce094221e4003ebcd2e54a49bd6af1e9b46a59[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Fri Nov 10 11:58:56 2017 +0700
+
+    bk 101117 1158am
+
+[33mcommit 19b376df1538912af99b3fcbd60275b55d20a259[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Thu Nov 9 23:35:14 2017 +0700
+
+    bk 091117 1135pm
+
+[33mcommit b149064de70ca81ec1e32b4cca43db34e207fe42[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Thu Nov 9 21:01:09 2017 +0700
+
+    bk 091117 0858pm "Gom file backup"
+
+[33mcommit 7c3459ce8489f0ab941175749f70412a49ad798c[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Thu Nov 9 20:59:54 2017 +0700
+
+    bk 091117 0858pm
+
+[33mcommit acb69d7478a27d796a18337a866ef28a88574d6f[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Wed Nov 8 17:09:20 2017 +0700
+
+    bk 081117 0509pm
+
+[33mcommit a81c7deb78c9a6e38472ca5bc5b8c6a1e624cdeb[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Wed Nov 8 02:18:39 2017 +0700
+
+    bk 081117 0218am
+
+[33mcommit 0cae5771b53c2a3ebe498b7be20e66cf40b688c2[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Tue Nov 7 23:41:22 2017 +0700
+
+    bk 071117 1141pm
+
+[33mcommit f4ca92f20b7a669891fddd47a31588b0691184a1[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Tue Nov 7 22:28:40 2017 +0700
+
+    bk 071117 1028pm
+
+[33mcommit 909f9c3c496da227a4170ee6fe44059cb432d092[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Tue Nov 7 15:10:34 2017 +0700
+
+    bk 071117 0610pm
+
+[33mcommit 7d0c2539be3348bc060a2fd7b0c8746041a247ab[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Tue Nov 7 15:07:52 2017 +0700
+
+    bk 071117 0307pm
+
+[33mcommit cdfb3da4d5c2eb02099fc86649c5028710c351f3[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Tue Nov 7 13:40:49 2017 +0700
+
+    bk 071117 0140pm
+
+[33mcommit 71ebb148a2a5aa8dab6c9f0de70b973fb3ee3b8f[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Tue Nov 7 12:29:07 2017 +0700
+
+    bk 071117 1229pm
+
+[33mcommit a21d0f942d9633523c153e809dcda56daf8c647c[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Tue Nov 7 00:55:21 2017 +0700
+
+    bk 0711 1255am
+
+[33mcommit e1efc3753c22f991139f1838c7d00ee6d10e22e7[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Mon Nov 6 15:15:15 2017 +0700
+
+    bk 061117 0315pm
+
+[33mcommit 60a622af76bb0caeafd0a759d0dc3ca08f463b19[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Mon Nov 6 13:20:05 2017 +0700
+
+    bk 0611 0118pm
+
+[33mcommit c34b7e8aa7b980c06bdb6a39cab376572007f66f[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Mon Nov 6 01:07:52 2017 +0700
+
+    061117 0107am
+
+[33mcommit 970f3660be8b38af452b1e562a3b04d511484054[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Sun Nov 5 23:40:53 2017 +0700
+
+    backup 1140 051117
+
+[33mcommit 38b736fa24e37361dfa94a424a283f107689b5a8[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Sun Nov 5 18:07:15 2017 +0700
+
+    backup 05/11/17 6:07pm
+
+[33mcommit 15eba4b7afc47afcc76d19060cc86f46d3ad77ba[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Sun Nov 5 16:53:57 2017 +0700
+
+    navigation - icon
+    05/11/17 4:53pm
+
+[33mcommit 2ca148130882afc7d04c353bacd2cb23a6958e6b[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Fri Nov 3 11:38:01 2017 +0700
+
+    Revert "Project init"
+    
+    This reverts commit 213da0bcd2d328835fc6a1586bf888d8267eff4e.
+
+[33mcommit 213da0bcd2d328835fc6a1586bf888d8267eff4e[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Thu Oct 26 23:12:18 2017 +0700
+
+    Project init
+
+[33mcommit 28bfb96e6bccf4fc77dfe265d84f917aa94f634b[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Fri Sep 29 16:02:59 2017 +0700
+
+    Dinh
+    
+    New Project - them npm
+    -----------------------------------------
+    npm i -S eslint-config-rallycoding
+    npm install react-navigation
+    yarn add redux
+    yarn add redux-thunk
+    yarn add react-redux
+    npm install -g eslint
+    -------------------------
+    Tạo file .eslintrc nếu chưa có:
+    {
+    "extends": "rallycoding",
+    "rules": {
+    "import/no-extraneous-dependencies": [2, { }]
+    }
+    }
+
+[33mcommit f33c9e532aa4aea5106f557826a79c4b1772afae[m
+Author: Dinh Nguyen <nguyendinhteki@gmail.com>
+Date:   Fri Sep 29 15:41:36 2017 +0700
+
+    Dinh
+    
+    New project

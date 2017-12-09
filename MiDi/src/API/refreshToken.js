@@ -2,7 +2,7 @@ import saveToken from './saveToken';
 import getToken from './getToken';
 
 const getNewToken = (token) => (
-    fetch("http://192.168.0.105/api/refreshToken.php",
+    fetch("http://192.168.56.1:8080/api/refreshToken.php",
     {
         method: 'POST',
         headers: {

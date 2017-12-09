@@ -19,8 +19,8 @@ import ThuongHieu from "./Components/Home/ThuongHieu";
 import ProductDetail from "./Components/Product/ProductDetail";
 import ListProduct from "./Components/Product/ListProduct";
 import Cart from "./Components/Cart/Cart";
-import SignIn from "./Components/User/signin";
-import SignUp from "./Components/User/signup";
+import SignIn from "./Components/User/SignIn";
+import SignUp from "./Components/User/SignUp";
 import ChangeInfo from "./Components/User/ChangeInfo";
 import OrderHistory from "./Components/User/OrderHistory";
 

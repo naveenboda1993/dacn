@@ -6,7 +6,8 @@ import {
   Image,
   StyleSheet,
   TouchableOpacity,
-  ImageBackground
+  ImageBackground,
+  AsyncStorage
 } from "react-native";
 
 const { width, height } = Dimensions.get("window");
@@ -46,10 +47,21 @@ class User extends Component {
   goContact() {
     this.props.navigation.navigate("Contact");
   }
+ // dang xuat thi xoa cai user luu trog may di
+  _removeUser = async () => {
+    try {
+      await AsyncStorage.removeItem("@Username:key");
+      console.log('aaaaaaxxxxx')
+    } catch (e) {
+      this._removeUser();
+      console.log("kkkkk");
+    }
+  };
   signOut() {
     this.setState({ user: null });
     saveToken("");
     this.props.navigation.navigate("User");
+    this._removeUser().done();
   }
   goOrderHistory() {
     this.props.navigation.navigate("ManHinh_OrderHistory");

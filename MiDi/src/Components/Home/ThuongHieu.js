@@ -17,7 +17,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 
-const url = "http://192.168.0.105/api/images/type/";
+const url = "http://192.168.56.1:8080/api/images/type/";
 import initData from "../../API/initData";
 
 var H = Dimensions.get("window").height;
