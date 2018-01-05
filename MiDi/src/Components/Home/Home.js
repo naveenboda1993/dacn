@@ -30,16 +30,13 @@ export default class Home extends Component {
   //   this.setState({ selectedTab: "ManHinh_Search" });
   // }
   render() {
-    return (
-      <ScrollView style={styles.container}>
-        <Header
-          gotoSearch={() => {
+    return <ScrollView style={styles.container}>
+        <Header gotoSearch={() => {
             this.props.navigation.navigate("ManHinh_Search");
-          }}
-        />
+          }} />
 
         <View style={{ height: H / 5, width: W }}>
-          <Swiper
+          {/* <Swiper
             style={{ height: H / 5, width: W }}
             showsButtons={true}
             autoplay
@@ -60,26 +57,23 @@ export default class Home extends Component {
               style={{ width: W, height: H / 5 }}
               source={require("./../../Images/banner4.jpg")}
             />
-          </Swiper>
+          </Swiper> */}
+          <Image style={{ width: W, height: H / 5 }} source={require("./../../Images/banner2.jpg")} />
         </View>
 
-        <ThuongHieu
-          gotoListProduct={category => {
-            this.props.navigation.navigate("ManHinh_ListProduct", { category });
-          }}
-        />
-        <SanPhamNoiBat
-          goToProductDetail={product => {
+        <ThuongHieu gotoListProduct={category => {
+            this.props.navigation.navigate("ManHinh_ListProduct", {
+              category
+            });
+          }} />
+        <SanPhamNoiBat goToProductDetail={product => {
             this.props.navigation.navigate("ManHinh_ProductDetail", {
               product
             });
-          }}
-          goToMall={() => {
+          }} goToMall={() => {
             this.props.navigation.navigate("ManHinh_Mall");
-          }}
-        />
-      </ScrollView>
-    );
+          }} />
+      </ScrollView>;
   }
 }
 {

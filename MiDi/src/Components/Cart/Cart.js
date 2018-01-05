@@ -87,6 +87,14 @@ class Cart extends Component {
       const kq = await sendOrder(token, arrayDetail);
       if (kq === "THEM_THANH_CONG") {
         console.log("THEM THANH CONG");
+        Alert.alert(
+          "Thông báo",
+          "Bạn đã đặt hàng thành công",
+          [
+            { text: "OK", onPress: () => this.props.navigation.navigate("ManHinh_Home") }
+          ],
+          { cancelable: false }
+        );
       } else {
         console.log("THEM THAT BAI", kq);
       }
